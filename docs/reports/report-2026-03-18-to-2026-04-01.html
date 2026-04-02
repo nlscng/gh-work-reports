@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Activity Report: 2026-03-18 → 2026-04-01</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --surface: #161b22;
+            --border: #30363d;
+            --text: #e6edf3;
+            --text-muted: #8b949e;
+            --accent: #58a6ff;
+            --green: #3fb950;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            background: var(--bg); color: var(--text); line-height: 1.6;
+        }
+        .container { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem; }
+        .back { display: inline-block; color: var(--accent); text-decoration: none; margin-bottom: 1.5rem; }
+        h1 { font-size: 1.75rem; margin-bottom: 0.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+        h2 { font-size: 1.3rem; margin: 2rem 0 0.75rem; color: var(--accent); }
+        h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; }
+        blockquote { color: var(--text-muted); border-left: 3px solid var(--border); padding-left: 1rem; margin: 0.5rem 0 1rem; }
+        table { border-collapse: collapse; width: 100%; margin: 0.75rem 0; }
+        th, td { border: 1px solid var(--border); padding: 0.5rem 0.75rem; text-align: left; font-size: 0.9rem; }
+        th { background: var(--surface); }
+        tr:nth-child(even) { background: var(--surface); }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        pre { background: var(--surface); padding: 1rem; border-radius: 6px; overflow-x: auto; margin: 1rem 0; }
+        code { font-family: 'SFMono-Regular', Consolas, monospace; font-size: 0.9em; }
+        .mermaid { background: var(--surface); padding: 1.5rem; border-radius: 6px; margin: 1rem 0; text-align: center; }
+        footer { text-align: center; padding: 2rem 0; margin-top: 2rem; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a class="back" href="../index.html">← All Reports</a>
+        <h1>GitHub Activity Report: 2026-03-18 → 2026-04-01</h1>
+<blockquote><strong>Generated</strong>: 2026-04-02</blockquote>
+<blockquote><strong>Period</strong>: 14 days</blockquote>
+<h2>Activity Summary</h2>
+<table>
+<thead><tr><th>Metric</th><th>Count</th></tr></thead>
+<tbody>
+<tr><td>Projects active</td><td>3</td></tr>
+<tr><td>PRs created</td><td>18</td></tr>
+<tr><td>PRs merged</td><td>16</td></tr>
+<tr><td>PRs open</td><td>0</td></tr>
+<tr><td>Issues opened</td><td>3</td></tr>
+</tbody></table>
+<h2>PR Distribution</h2>
+<div class="mermaid">
+pie title PRs by Project
+&quot;adaptctl&quot; : 11
+&quot;nationfirst-simulation&quot; : 7
+</div>
+<h2>Activity Timeline</h2>
+<div class="mermaid">
+gantt
+title PR Activity (2026-03-18 → 2026-04-01)
+dateFormat YYYY-MM-DD
+section adaptctl
+#8 feat: add --name and --object-id flags t :done, 2026-03-20, 2026-03-20
+#17 fix: switch keyvault clean to data-plane :done, 2026-03-23, 2026-03-23
+#18 fix: handle key vault data-plane kid fie :done, 2026-03-23, 2026-03-23
+#19 feat: replace --object-id with explicit  :done, 2026-03-23, 2026-03-23
+#26 fix: switch storage clean to data-plane  :done, 2026-03-24, 2026-03-24
+#28 feat: add maidap-cleanup script for hone :done, 2026-03-24, 2026-03-27
+#33 feat: clean emails from all folders incl :done, 2026-03-26, 2026-03-26
+#34 feat: add maidap-cleanup script for cybe :done, 2026-03-26, 2026-03-27
+#39 feat: add --lookback flag to clean keyva :done, 2026-03-28, 2026-03-28
+#44 feat: add `adaptctl update` command for  :done, 2026-03-31, 2026-03-31
+section nationfirst-simulation
+#29 Change tap value in honeypots.yaml :done, 2026-03-25, 2026-03-25
+#30 Warn when Graph API fallback loses times :done, 2026-03-26, 2026-03-26
+#31 feat: add cleanup script for cybergym da :done, 2026-03-27, 2026-03-30
+#32 feat: add nationfirst data-plane cleanup :done, 2026-03-27, 2026-03-30
+#33 feat: add nelson.muntz mailbox delegatio :done, 2026-03-27, 2026-03-30
+#36 Change tap value in honeypots.yaml :done, 2026-03-31, 2026-03-31
+#39 feat: preserve TAP values across honeypo :done, 2026-04-01, 2026-04-01
+</div>
+<h2>Pull Requests</h2>
+<h3>cloud-ecosystem-security/adaptctl</h3>
+<table>
+<thead><tr><th>#</th><th>Title</th><th>Status</th><th>Created</th></tr></thead>
+<tbody>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/adaptctl/pull/8">#8</a></td><td>feat: add --name and --object-id flags to clean keyvault</td><td>✅ Merged</td><td>2026-03-20</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/adaptctl/pull/17">#17</a></td><td>fix: switch keyvault clean to data-plane API for secrets, keys, and certificates</td><td>✅ Merged</td><td>2026-03-23</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/adaptctl/pull/18">#18</a></td><td>fix: handle key vault data-plane kid field and clean ordering</td><td>✅ Merged</td><td>2026-03-23</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/adaptctl/pull/19">#19</a></td><td>feat: replace --object-id with explicit --object-type and --object-name flags</td><td>✅ Merged</td><td>2026-03-23</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/adaptctl/pull/26">#26</a></td><td>fix: switch storage clean to data-plane API to preserve resources</td><td>✅ Merged</td><td>2026-03-24</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/adaptctl/pull/28">#28</a></td><td>feat: add maidap-cleanup script for honeypot data-plane cleanup</td><td>❌ Closed</td><td>2026-03-24</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/adaptctl/pull/33">#33</a></td><td>feat: clean emails from all folders including custom and nested</td><td>✅ Merged</td><td>2026-03-26</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/adaptctl/pull/34">#34</a></td><td>feat: add maidap-cleanup script for cybergym01 environment</td><td>❌ Closed</td><td>2026-03-26</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/adaptctl/pull/39">#39</a></td><td>feat: add --lookback flag to clean keyvault command</td><td>✅ Merged</td><td>2026-03-28</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/adaptctl/pull/44">#44</a></td><td>feat: add <code>adaptctl update</code> command for in-place self-update</td><td>✅ Merged</td><td>2026-03-31</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/adaptctl/pull/45">#45</a></td><td>feat: add --lookback flag to clean storageaccount</td><td>✅ Merged</td><td>2026-04-01</td></tr>
+</tbody></table>
+<h3>cloud-ecosystem-security/nationfirst-simulation</h3>
+<table>
+<thead><tr><th>#</th><th>Title</th><th>Status</th><th>Created</th></tr></thead>
+<tbody>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/nationfirst-simulation/pull/29">#29</a></td><td>Change tap value in honeypots.yaml</td><td>✅ Merged</td><td>2026-03-25</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/nationfirst-simulation/pull/30">#30</a></td><td>Warn when Graph API fallback loses timestamp spoofing</td><td>✅ Merged</td><td>2026-03-26</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/nationfirst-simulation/pull/31">#31</a></td><td>feat: add cleanup script for cybergym data-plane honeypot injections</td><td>✅ Merged</td><td>2026-03-27</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/nationfirst-simulation/pull/32">#32</a></td><td>feat: add nationfirst data-plane cleanup script</td><td>✅ Merged</td><td>2026-03-27</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/nationfirst-simulation/pull/33">#33</a></td><td>feat: add nelson.muntz mailbox delegation script</td><td>✅ Merged</td><td>2026-03-27</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/nationfirst-simulation/pull/36">#36</a></td><td>Change tap value in honeypots.yaml</td><td>✅ Merged</td><td>2026-03-31</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/nationfirst-simulation/pull/39">#39</a></td><td>feat: preserve TAP values across honeypots.yaml regeneration</td><td>✅ Merged</td><td>2026-04-01</td></tr>
+</tbody></table>
+<h2>Issues</h2>
+<table>
+<thead><tr><th>#</th><th>Title</th><th>Repository</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/adaptctl/issues/43">#43</a></td><td>feat: add <code>adaptctl update</code> command for in-place self-update</td><td>cloud-ecosystem-security/adaptctl</td><td>✅ Closed</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/adaptctl/issues/29">#29</a></td><td>Bug: auth app-setup doesn't save credentials when app already exists</td><td>cloud-ecosystem-security/adaptctl</td><td>✅ Closed</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/adaptctl/issues/27">#27</a></td><td>Feature: Add optional --from flag for time-based resource cleanup filtering</td><td>cloud-ecosystem-security/adaptctl</td><td>✅ Closed</td></tr>
+</tbody></table>
+<h2>Active Repositories</h2>
+<table>
+<thead><tr><th>Repository</th><th>Description</th><th>Last Push</th></tr></thead>
+<tbody>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/nationfirst-simulation">cloud-ecosystem-security/nationfirst-simulation</a></td><td>Adapt research - resources to deploy nationfirst simulation</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/adaptctl">cloud-ecosystem-security/adaptctl</a></td><td>Utility for managing simulation environments</td><td>2026-04-01</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/ridgeline-simulation">cloud-ecosystem-security/ridgeline-simulation</a></td><td>Adapt research - resources to deploy ridgeline simulation</td><td>2026-04-01</td></tr>
+</tbody></table>
+        <footer>Generated by gh-work-report</footer>
+    </div>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+    </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+name: Monthly Work Report
+
+on:
+  schedule:
+    - cron: '0 8 1 * *'  # First of each month, 08:00 UTC
+  workflow_dispatch:
+    inputs:
+      days:
+        description: 'Number of days to cover'
+        required: false
+        default: '30'
+        type: choice
+        options: ['30', '60', '90']
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: report-generation
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up dates
+        id: dates
+        run: |
+          DAYS="${{ github.event.inputs.days || '30' }}"
+          END=$(date +%Y-%m-%d)
+          START=$(date -d "$DAYS days ago" +%Y-%m-%d)
+          echo "start=$START" >> "$GITHUB_OUTPUT"
+          echo "end=$END" >> "$GITHUB_OUTPUT"
+          echo "days=$DAYS" >> "$GITHUB_OUTPUT"
+
+      - name: Generate report
+        env:
+          GH_TOKEN: ${{ secrets.REPORT_TOKEN }}
+        run: |
+          START="${{ steps.dates.outputs.start }}"
+          END="${{ steps.dates.outputs.end }}"
+          OUTFILE="docs/reports/report-${START}-to-${END}.md"
+          python3 scripts/generate-report.py \
+            --start "$START" --end "$END" \
+            --output "$OUTFILE"
+
+      - name: Build HTML
+        run: python3 scripts/build-html.py
+
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/
+          git diff --staged --quiet || \
+            git commit -m "📊 Monthly: ${{ steps.dates.outputs.start }} → ${{ steps.dates.outputs.end }}" && \
+            git push
+
+  deploy:
+    needs: generate
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/configure-pages@v4
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/
+      - id: deployment
+        uses: actions/deploy-pages@v4
