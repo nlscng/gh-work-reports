@@ -63,7 +63,9 @@ def gather_repos(start_date: str) -> list[dict]:
     for line in raw.strip().splitlines():
         if line.strip():
             try:
-                repos.append(json.loads(line))
+                obj = json.loads(line)
+                if isinstance(obj, dict):
+                    repos.append(obj)
             except json.JSONDecodeError:
                 pass
     return [r for r in repos if should_include(r.get("nameWithOwner", ""))]
