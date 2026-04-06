@@ -58,6 +58,7 @@ jobs:
           git add docs/
           git diff --staged --quiet || \
             git commit -m "📊 Weekly: ${{ steps.dates.outputs.start }} → ${{ steps.dates.outputs.end }}" && \
+            git pull --rebase && \
             git push
 
   deploy:
