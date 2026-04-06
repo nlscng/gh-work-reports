@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """Generate a GitHub work report for a given time window.
 
+Supports multiple GitHub tokens to aggregate activity across accounts.
+Set GH_TOKEN (primary) and optionally GH_TOKEN_SECONDARY for a second account.
+
 Usage:
     python3 generate-report.py [--days N] [--start YYYY-MM-DD] [--end YYYY-MM-DD]
     python3 generate-report.py --days 7
     python3 generate-report.py --start 2026-03-18 --end 2026-04-01
-
-Requires: gh CLI authenticated with a token that can see the target repos.
-Set GH_TOKEN env var or use gh auth login.
 """
 
 import argparse
@@ -17,30 +17,46 @@ import subprocess
 import sys
 from datetime import datetime, timedelta
 
-# Repos to exclude (personal/non-work projects)
+# Repos to exclude
 EXCLUDE_REPOS = {
     "nlscng/meta-runner",
-    "nlscng/meta-runner-2",
     "nlscng/turbo-doodle",
-    "nlscng/loonshot-exploration",
-    "nlscng/ai-agents-for-beginners",
 }
 
 # Only include repos from these owners (empty = no filter)
 INCLUDE_OWNERS = {
     "cloud-ecosystem-security",
+    "nelsoncheng_microsoft",
+    "nlscng",
 }
 
 
-def run_gh(args: list[str]) -> str:
+def run_gh(args: list[str], token: str | None = None) -> str:
+    env = os.environ.copy()
+    if token:
+        env["GH_TOKEN"] = token
     result = subprocess.run(
         ["gh"] + args,
-        capture_output=True, text=True, timeout=120,
+        capture_output=True, text=True, timeout=120, env=env,
     )
     if result.returncode != 0:
         print(f"  warn: gh {' '.join(args[:3])}... failed: {result.stderr.strip()}", file=sys.stderr)
         return "[]"
     return result.stdout
+
+
+def get_tokens() -> list[tuple[str | None, str]]:
+    """Return list of (token, label) pairs for all configured accounts."""
+    tokens = []
+    primary = os.environ.get("GH_TOKEN")
+    secondary = os.environ.get("GH_TOKEN_SECONDARY")
+    if primary:
+        tokens.append((primary, "primary"))
+    else:
+        tokens.append((None, "default"))
+    if secondary:
+        tokens.append((secondary, "secondary"))
+    return tokens
 
 
 def gather_repos(start_date: str) -> list[dict]:
@@ -54,37 +70,52 @@ def gather_repos(start_date: str) -> list[dict]:
         }
       }
     }"""
-    raw = run_gh([
-        "api", "graphql", "--paginate",
-        "-f", f"query={query}",
-        "--jq", f'.data.viewer.repositories.nodes[] | select(.pushedAt >= "{start_date}")',
-    ])
-    repos = []
-    for line in raw.strip().splitlines():
-        if line.strip():
-            try:
-                obj = json.loads(line)
-                if isinstance(obj, dict):
-                    repos.append(obj)
-            except json.JSONDecodeError:
-                pass
-    return [r for r in repos if should_include(r.get("nameWithOwner", ""))]
+    all_repos: dict[str, dict] = {}
+    for token, label in get_tokens():
+        print(f"  Gathering repos ({label})...", file=sys.stderr)
+        raw = run_gh([
+            "api", "graphql", "--paginate",
+            "-f", f"query={query}",
+            "--jq", f'.data.viewer.repositories.nodes[] | select(.pushedAt >= "{start_date}")',
+        ], token=token)
+        for line in raw.strip().splitlines():
+            if line.strip():
+                try:
+                    obj = json.loads(line)
+                    if isinstance(obj, dict):
+                        name = obj.get("nameWithOwner", "")
+                        if name not in all_repos:
+                            all_repos[name] = obj
+                except json.JSONDecodeError:
+                    pass
+    return [r for r in all_repos.values() if should_include(r.get("nameWithOwner", ""))]
+
+
+def gather_prs_for_user(username: str, start_date: str, token: str | None) -> list[dict]:
+    fields = "number,title,repository,state,createdAt,closedAt,url"
+    created = json.loads(run_gh([
+        "search", "prs", f"--author={username}", f"--created=>{start_date}",
+        "--limit", "500", "--json", fields,
+    ], token=token))
+    merged = json.loads(run_gh([
+        "search", "prs", f"--author={username}", f"--merged-at=>{start_date}",
+        "--limit", "500", "--json", fields,
+    ], token=token))
+    return created + merged
 
 
 def gather_prs(start_date: str) -> list[dict]:
-    fields = "number,title,repository,state,createdAt,closedAt,url"
-    created = json.loads(run_gh([
-        "search", "prs", "--author=@me", f"--created=>{start_date}",
-        "--limit", "500", "--json", fields,
-    ]))
-    merged = json.loads(run_gh([
-        "search", "prs", "--author=@me", f"--merged-at=>{start_date}",
-        "--limit", "500", "--json", fields,
-    ]))
+    all_prs: list[dict] = []
+    for token, label in get_tokens():
+        # Resolve username for this token
+        user_json = run_gh(["api", "/user", "--jq", ".login"], token=token).strip()
+        username = user_json if user_json and not user_json.startswith("[") else "@me"
+        print(f"  Gathering PRs for {username} ({label})...", file=sys.stderr)
+        all_prs.extend(gather_prs_for_user(username, start_date, token))
 
-    seen = set()
-    result = []
-    for pr in created + merged:
+    seen: set[str] = set()
+    result: list[dict] = []
+    for pr in all_prs:
         if pr["url"] not in seen:
             seen.add(pr["url"])
             repo = pr.get("repository", {})
@@ -96,13 +127,25 @@ def gather_prs(start_date: str) -> list[dict]:
 
 def gather_issues(start_date: str) -> list[dict]:
     fields = "number,title,repository,state,createdAt,url"
-    issues = json.loads(run_gh([
-        "search", "issues", "--author=@me", f"--created=>{start_date}",
-        "--limit", "200", "--json", fields,
-    ]))
-    return [i for i in issues if should_include(
-        i.get("repository", {}).get("nameWithOwner", "")
-    )]
+    all_issues: list[dict] = []
+    for token, label in get_tokens():
+        user_json = run_gh(["api", "/user", "--jq", ".login"], token=token).strip()
+        username = user_json if user_json and not user_json.startswith("[") else "@me"
+        print(f"  Gathering issues for {username} ({label})...", file=sys.stderr)
+        issues = json.loads(run_gh([
+            "search", "issues", f"--author={username}", f"--created=>{start_date}",
+            "--limit", "200", "--json", fields,
+        ], token=token))
+        all_issues.extend(issues)
+
+    seen: set[str] = set()
+    result: list[dict] = []
+    for i in all_issues:
+        if i["url"] not in seen:
+            seen.add(i["url"])
+            if should_include(i.get("repository", {}).get("nameWithOwner", "")):
+                result.append(i)
+    return result
 
 
 def should_include(name_with_owner: str) -> bool:
