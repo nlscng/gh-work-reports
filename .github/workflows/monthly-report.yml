@@ -39,8 +39,8 @@ jobs:
 
       - name: Generate report
         env:
-          GH_TOKEN: ${{ secrets.REPORT_TOKEN }}
-          GH_TOKEN_SECONDARY: ${{ secrets.REPORT_TOKEN_MS }}
+          GH_TOKEN: ${{ secrets.GH_WORK_REPORTS_TOKEN }}
+          GH_TOKEN_SECONDARY: ${{ secrets.GH_WORK_REPORTS_TOKEN_MS }}
         run: |
           START="${{ steps.dates.outputs.start }}"
           END="${{ steps.dates.outputs.end }}"
