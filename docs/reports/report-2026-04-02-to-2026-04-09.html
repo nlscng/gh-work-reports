@@ -47,15 +47,25 @@
 <table>
 <thead><tr><th>Metric</th><th>Count</th></tr></thead>
 <tbody>
-<tr><td>Projects active</td><td>5</td></tr>
-<tr><td>PRs created</td><td>4</td></tr>
-<tr><td>PRs merged</td><td>4</td></tr>
-<tr><td>PRs open</td><td>0</td></tr>
+<tr><td>Projects active</td><td>19</td></tr>
+<tr><td>PRs created</td><td>312</td></tr>
+<tr><td>PRs merged</td><td>263</td></tr>
+<tr><td>PRs open</td><td>28</td></tr>
 <tr><td>Issues opened</td><td>0</td></tr>
 </tbody></table>
 <h2>PR Distribution</h2>
 <div class="mermaid">
 pie title PRs by Project
+&quot;Powderfinger&quot; : 22
+&quot;SedanDelivery&quot; : 24
+&quot;adaptctl&quot; : 1
+&quot;cybergym&quot; : 87
+&quot;gremlinox&quot; : 3
+&quot;hyenas&quot; : 142
+&quot;nationfirst-simulation&quot; : 4
+&quot;ontolohunt&quot; : 19
+&quot;repromcp&quot; : 5
+&quot;ridgeline-simulation&quot; : 1
 &quot;gh-work-reports&quot; : 3
 &quot;meta-runner-2&quot; : 1
 </div>
@@ -64,6 +74,80 @@ pie title PRs by Project
 gantt
 title PR Activity (2026-04-02 → 2026-04-09)
 dateFormat YYYY-MM-DD
+section Powderfinger
+#3 feat: merger dedup, resource scoping, pr :done, 2026-04-07, 2026-04-07
+#4 feat: terraform validate passes for all  :done, 2026-04-07, 2026-04-07
+#5 feat: terraform validate CI step, update :done, 2026-04-07, 2026-04-07
+#7 feat: Repeatable Azure deployment with d :done, 2026-04-07, 2026-04-07
+#9 feat: Live validation probes for deploye :done, 2026-04-07, 2026-04-07
+#11 feat: Expand terrain rules to 35 CWEs (9 :done, 2026-04-07, 2026-04-07
+#13 feat: Recipe runner CLI with YAML workfl :done, 2026-04-07, 2026-04-07
+#15 docs: Update README with recipe commands :done, 2026-04-07, 2026-04-08
+#17 feat: Phase 2 — 100 CWE terrain rules, f :done, 2026-04-08, 2026-04-08
+#19 feat: Killchain library (31 attack patte :done, 2026-04-08, 2026-04-08
+section SedanDelivery
+#1154 feat(sd2-redis-store): wire CachedGraphS :done, 2026-04-01, 2026-04-03
+#1155 chore: grant jdellamore_microsoft Mainta :active, 2026-04-02, 2026-04-09
+#1158 fix: remove silent fallback causing 10M  :done, 2026-04-02, 2026-04-02
+#1159 fix: eliminate silent fallbacks and enfo :done, 2026-04-02, 2026-04-02
+#1161 fix: enforce no-silent-fallbacks philoso :done, 2026-04-02, 2026-04-02
+#1162 fix: eliminate philosophy violations acr :active, 2026-04-02, 2026-04-09
+#1164 Rebase fix/1090-row-limit-v2 onto origin :done, 2026-04-02, 2026-04-02
+#1170 fix: remove silent index scan fallback a :done, 2026-04-02, 2026-04-02
+#1171 fix: remove index scan fallback and make :done, 2026-04-02, 2026-04-02
+#1174 fix: eliminate silent index scan fallbac :done, 2026-04-02, 2026-04-02
+section adaptctl
+#48 feat: integrate Intune diagnostic logs i :done, 2026-04-07, 2026-04-07
+section cybergym
+#1235 docs(quickstart): add and refine develop :active, 2026-04-02, 2026-04-09
+#1236 perf: increase edge UNWIND batch to 50 — :done, 2026-04-02, 2026-04-02
+#1237 fix: revert edge batch to 25 — 10M limit :done, 2026-04-02, 2026-04-02
+#1238 fix(mini): handle one-shot init services :done, 2026-04-02, 2026-04-02
+#1240 diag: add edge type to batch failure log :done, 2026-04-03, 2026-04-03
+#1242 feat(mini): wire Azure OpenAI env vars f :done, 2026-04-03, 2026-04-03
+#1245 perf: increase edge UNWIND batch to 50 — :done, 2026-04-03, 2026-04-03
+#1246 fix: add transient retry for edge batch  :done, 2026-04-03, 2026-04-03
+#1247 fix: multi-retry edge batches on transie :done, 2026-04-03, 2026-04-03
+#1248 chore: disable all engine:claude agentic :done, 2026-04-03, 2026-04-03
+section gremlinox
+#51 Add math() step and lookahead/lookbehind :done, 2026-04-02, 2026-04-02
+#52 chore(deps-dev): bump vite from 8.0.3 to :active, 2026-04-06, 2026-04-09
+#53 ci: add Windows wheel builds to package  :done, 2026-04-08, 2026-04-08
+section hyenas
+#120 made sarif import a bit more efficient,  :done, 2026-03-28, 2026-04-02
+#193 feat: add --deep option to hyenas scan :done, 2026-04-01, 2026-04-02
+#202 fix: eliminate terminal UI flicker and r :done, 2026-04-02, 2026-04-02
+#203 Rename module to scope :done, 2026-04-02, 2026-04-02
+#205 Refactor scan load and validate context :done, 2026-04-02, 2026-04-02
+#206 fix(prepare): use scope paths for scoped :done, 2026-04-02, 2026-04-02
+#209 Remove scope usage from scan stage :done, 2026-04-02, 2026-04-02
+#211 Refactor scan generate-ranking step :done, 2026-04-02, 2026-04-02
+#213 Move scan agent catalogue to refactor sc :done, 2026-04-02, 2026-04-02
+#215 Tighten test guidance and remove low-val :done, 2026-04-02, 2026-04-02
+section nationfirst-simulation
+#40 feat: add adaptresearch003 data-plane cl :done, 2026-04-07, 2026-04-07
+#41 feat: auto-generate cleanup scripts duri :active, 2026-04-08, 2026-04-08
+#42 fix: address code review feedback on TAP :done, 2026-04-08, 2026-04-08
+#43 fix: address code review feedback on TAP :done, 2026-04-08, 2026-04-08
+section ontolohunt
+#19 Bump flatted from 3.3.3 to 3.4.2 in /src :done, 2026-03-21, 2026-04-04
+#20 Bump next from 15.5.12 to 15.5.14 in /sr :done, 2026-03-22, 2026-04-04
+#21 Bump picomatch from 2.3.1 to 2.3.2 in /s :done, 2026-03-26, 2026-04-04
+#22 Bump picomatch in /src/ui/report :done, 2026-03-26, 2026-04-04
+#23 Bump yaml from 1.10.2 to 1.10.3 in /src/ :done, 2026-03-26, 2026-04-04
+#24 Bump dompurify from 3.3.1 to 3.3.3 in /s :done, 2026-03-28, 2026-04-04
+#28 feat: Add Ridgeline scenario with verifi :done, 2026-04-04, 2026-04-04
+#30 feat(rl): sweep v4 — statistically signi :done, 2026-04-04, 2026-04-06
+#31 feat: integrate RL-guided relationship r :done, 2026-04-04, 2026-04-06
+#32 Update CONTRIBUTING.md with PR expectati :done, 2026-04-04, 2026-04-04
+section repromcp
+#3 User/adamrhodes/error detection :done, 2026-04-02, 2026-04-02
+#4 Bump hono from 4.12.9 to 4.12.12 :done, 2026-04-08, 2026-04-08
+#5 chore: add workflow_dispatch to release  :done, 2026-04-08, 2026-04-08
+#6 Bump @hono/node-server from 1.19.11 to 1 :done, 2026-04-08, 2026-04-08
+#7 Enhance logging and refactor device conn :active, 2026-04-09, 2026-04-09
+section ridgeline-simulation
+#13 Bump vite from 7.3.1 to 7.3.2 in /applic :active, 2026-04-07, 2026-04-09
 section gh-work-reports
 #1 fix: add git pull --rebase before push i :done, 2026-04-06, 2026-04-06
 #2 feat: dual-token support for multi-accou :done, 2026-04-06, 2026-04-06
@@ -72,6 +156,364 @@ section meta-runner-2
 #3 Add disk-backed image cache for card ima :done, 2026-04-09, 2026-04-09
 </div>
 <h2>Pull Requests</h2>
+<h3>cloud-ecosystem-security/Powderfinger</h3>
+<table>
+<thead><tr><th>#</th><th>Title</th><th>Status</th><th>Created</th></tr></thead>
+<tbody>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/Powderfinger/pull/3">#3</a></td><td>feat: merger dedup, resource scoping, providers.tf with azuread</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/Powderfinger/pull/4">#4</a></td><td>feat: terraform validate passes for all 12 reference killchains</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/Powderfinger/pull/5">#5</a></td><td>feat: terraform validate CI step, updated README, QA scenarios</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/Powderfinger/pull/7">#7</a></td><td>feat: Repeatable Azure deployment with deploy-pipeline command</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/Powderfinger/pull/9">#9</a></td><td>feat: Live validation probes for deployed infrastructure</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/Powderfinger/pull/11">#11</a></td><td>feat: Expand terrain rules to 35 CWEs (9 new)</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/Powderfinger/pull/13">#13</a></td><td>feat: Recipe runner CLI with YAML workflow execution</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/Powderfinger/pull/15">#15</a></td><td>docs: Update README with recipe commands and current stats</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/Powderfinger/pull/17">#17</a></td><td>feat: Phase 2 — 100 CWE terrain rules, flashcard generator, template validation</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/Powderfinger/pull/19">#19</a></td><td>feat: Killchain library (31 attack patterns) and README diagram</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/Powderfinger/pull/21">#21</a></td><td>feat: Multi-chain deploy from killchain library</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/Powderfinger/pull/23">#23</a></td><td>fix: Phase 3 security fixes — 6 vulnerabilities addressed</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/Powderfinger/pull/25">#25</a></td><td>fix: Phase 2 terraform generation correctness</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/Powderfinger/pull/27">#27</a></td><td>Phase 3-4: Quality cleanup — derives, dead code, 38 new tests</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/Powderfinger/pull/29">#29</a></td><td>Phase 5: Template quality — real attributes, outputs, depends_on</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/Powderfinger/pull/31">#31</a></td><td>Phase 6: Validation upgrade — terraform validate + CWE reference matching</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/Powderfinger/pull/33">#33</a></td><td>Phase 7: Generation gaps, recipe fixes, feedback CLI, and E2E tests</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/Powderfinger/pull/36">#36</a></td><td>Phase 8A: Plan-time validation (Loop 2 of multi-loop validation)</td><td>❌ Closed</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/Powderfinger/pull/37">#37</a></td><td>Phase 8B: CWE-Specific Exploit Probe Definitions</td><td>❌ Closed</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/Powderfinger/pull/38">#38</a></td><td>Phase 8C: Hierarchical Confidence Scoring</td><td>❌ Closed</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/Powderfinger/pull/39">#39</a></td><td>Phase 8D: Adversarial Multi-Agent Validation</td><td>❌ Closed</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/Powderfinger/pull/42">#42</a></td><td>Phase 8: Multi-Loop Validation + OWASP Benchmark Integration</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+</tbody></table>
+<h3>cloud-ecosystem-security/SedanDelivery</h3>
+<table>
+<thead><tr><th>#</th><th>Title</th><th>Status</th><th>Created</th></tr></thead>
+<tbody>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/SedanDelivery/pull/1154">#1154</a></td><td>feat(sd2-redis-store): wire CachedGraphStore into store factory</td><td>✅ Merged</td><td>2026-04-01</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/SedanDelivery/pull/1155">#1155</a></td><td>chore: grant jdellamore_microsoft Maintain access</td><td>🔵 Open</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/SedanDelivery/pull/1158">#1158</a></td><td>fix: remove silent fallback causing 10M row limit regression (#1090)</td><td>✅ Merged</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/SedanDelivery/pull/1159">#1159</a></td><td>fix: eliminate silent fallbacks and enforce philosophy compliance</td><td>✅ Merged</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/SedanDelivery/pull/1161">#1161</a></td><td>fix: enforce no-silent-fallbacks philosophy across codebase</td><td>❌ Closed</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/SedanDelivery/pull/1162">#1162</a></td><td>fix: eliminate philosophy violations across workspace</td><td>🔵 Open</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/SedanDelivery/pull/1164">#1164</a></td><td>Rebase fix/1090-row-limit-v2 onto origin/main. The conflict is in sd2-redis-store/src/reads.rs — both PR 1159 (philosophy audit) and this branch modified find_nodes_by_label_and_property_impl. Accept</td><td>❌ Closed</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/SedanDelivery/pull/1170">#1170</a></td><td>fix: remove silent index scan fallback and convert cache to write-through (#1090)</td><td>✅ Merged</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/SedanDelivery/pull/1171">#1171</a></td><td>fix: remove index scan fallback and make CachedGraphStore write-through</td><td>❌ Closed</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/SedanDelivery/pull/1174">#1174</a></td><td>fix: eliminate silent index scan fallback causing 10M row cartesian product (#1090)</td><td>❌ Closed</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/SedanDelivery/pull/1175">#1175</a></td><td>fix: root out remaining silent fallbacks across codebase</td><td>✅ Merged</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/SedanDelivery/pull/1176">#1176</a></td><td>perf: optimize cache load and index scan batch fetching (#1090)</td><td>❌ Closed</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/SedanDelivery/pull/1178">#1178</a></td><td>fix: merge-ready audit — philosophy, performance, docs</td><td>✅ Merged</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/SedanDelivery/pull/1180">#1180</a></td><td>fix: renew write lock during graph maintenance to prevent blocking (#986)</td><td>✅ Merged</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/SedanDelivery/pull/1182">#1182</a></td><td>fix: restore IndexScan optimization for MATCH without declared index (#1090)</td><td>✅ Merged</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/SedanDelivery/pull/1185">#1185</a></td><td>fix: propagate errors in Gremlin executor instead of silent degradation</td><td>✅ Merged</td><td>2026-04-03</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/SedanDelivery/pull/1187">#1187</a></td><td>fix(sd2-redis-store): implement label+property scan instead of NoPropertyIndex (#1090)</td><td>✅ Merged</td><td>2026-04-03</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/SedanDelivery/pull/1189">#1189</a></td><td>chore: disable all engine:claude agentic workflows</td><td>✅ Merged</td><td>2026-04-03</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/SedanDelivery/pull/1190">#1190</a></td><td>ci: remove all gh-aw agentic workflows that depend on ANTHROPIC_API_KEY</td><td>✅ Merged</td><td>2026-04-03</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/SedanDelivery/pull/1197">#1197</a></td><td>fix(gremlin): address critical and high security/reliability audit findings</td><td>🔵 Open</td><td>2026-04-04</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/SedanDelivery/pull/1208">#1208</a></td><td>chore(deps)(deps): bump redis from 1.0.5 to 1.2.0</td><td>🔵 Open</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/SedanDelivery/pull/1209">#1209</a></td><td>chore(deps)(deps): bump indexmap from 2.13.0 to 2.13.1</td><td>🔵 Open</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/SedanDelivery/pull/1210">#1210</a></td><td>chore(deps-dev): bump vite, @vitest/ui and vitest in /sedan-graph-ui/src/sedan-web</td><td>🔵 Open</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/SedanDelivery/pull/1212">#1212</a></td><td>Fix Fabric GraphModel live contract and validation</td><td>🔵 Open</td><td>2026-04-08</td></tr>
+</tbody></table>
+<h3>cloud-ecosystem-security/adaptctl</h3>
+<table>
+<thead><tr><th>#</th><th>Title</th><th>Status</th><th>Created</th></tr></thead>
+<tbody>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/adaptctl/pull/48">#48</a></td><td>feat: integrate Intune diagnostic logs into bootstrap sequence</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+</tbody></table>
+<h3>cloud-ecosystem-security/cybergym</h3>
+<table>
+<thead><tr><th>#</th><th>Title</th><th>Status</th><th>Created</th></tr></thead>
+<tbody>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1235">#1235</a></td><td>docs(quickstart): add and refine developer quick start guide</td><td>🔵 Open</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1236">#1236</a></td><td>perf: increase edge UNWIND batch to 50 — SD CachedGraphStore + 10M fix</td><td>✅ Merged</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1237">#1237</a></td><td>fix: revert edge batch to 25 — 10M limit after cache invalidation</td><td>✅ Merged</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1238">#1238</a></td><td>fix(mini): handle one-shot init services in doctor</td><td>✅ Merged</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1240">#1240</a></td><td>diag: add edge type to batch failure logging</td><td>✅ Merged</td><td>2026-04-03</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1242">#1242</a></td><td>feat(mini): wire Azure OpenAI env vars for mini topology</td><td>✅ Merged</td><td>2026-04-03</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1245">#1245</a></td><td>perf: increase edge UNWIND batch to 50 — SD#1090 row budget fix (#1244)</td><td>✅ Merged</td><td>2026-04-03</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1246">#1246</a></td><td>fix: add transient retry for edge batch failures</td><td>✅ Merged</td><td>2026-04-03</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1247">#1247</a></td><td>fix: multi-retry edge batches on transient failures</td><td>✅ Merged</td><td>2026-04-03</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1248">#1248</a></td><td>chore: disable all engine:claude agentic workflows</td><td>✅ Merged</td><td>2026-04-03</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1250">#1250</a></td><td>fix(integration): harden shared scan visualization flow</td><td>✅ Merged</td><td>2026-04-03</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1252">#1252</a></td><td>chore: sync main with integration (scan visualization workflow fix)</td><td>✅ Merged</td><td>2026-04-04</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1253">#1253</a></td><td>fix: ignore missing fabric MI env value errors</td><td>✅ Merged</td><td>2026-04-04</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1255">#1255</a></td><td>fix: restore main production manifest generation</td><td>✅ Merged</td><td>2026-04-04</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1257">#1257</a></td><td>fix: preserve HTTP transport on Azure endpoints</td><td>✅ Merged</td><td>2026-04-04</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1258">#1258</a></td><td>fix: derive SD2 fabric MI client id at deploy time</td><td>✅ Merged</td><td>2026-04-04</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1260">#1260</a></td><td>fix: persist main scan and ingress recovery</td><td>✅ Merged</td><td>2026-04-04</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1262">#1262</a></td><td>fix: sync postgres secrets before deploy</td><td>🔵 Open</td><td>2026-04-04</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1263">#1263</a></td><td>fix(integration): finish shared QA auth and query fixes</td><td>❌ Closed</td><td>2026-04-04</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1264">#1264</a></td><td>chore: sync main into integration after production recovery</td><td>✅ Merged</td><td>2026-04-04</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1265">#1265</a></td><td>fix: finish shared QA auth and query fixes</td><td>❌ Closed</td><td>2026-04-04</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1269">#1269</a></td><td>fix(integration): finish shared QA auth and query fixes</td><td>✅ Merged</td><td>2026-04-04</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1270">#1270</a></td><td>fix: finish shared QA auth and query fixes</td><td>✅ Merged</td><td>2026-04-04</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1296">#1296</a></td><td>Fix tenant deployment and expose replication planning</td><td>✅ Merged</td><td>2026-04-05</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1302">#1302</a></td><td>Add tenant replication execution path</td><td>✅ Merged</td><td>2026-04-05</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1309">#1309</a></td><td>Fix replication auth and tenant client contract</td><td>🔵 Open</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1310">#1310</a></td><td>Ignore stale postgres flexible server listings</td><td>🔵 Open</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1311">#1311</a></td><td>Add pooled replication shortcut targets</td><td>✅ Merged</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1312">#1312</a></td><td>Fix E2E auth acquisition in deploy workflows</td><td>✅ Merged</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1314">#1314</a></td><td>Make Gadugi replication validation POSIX-safe</td><td>✅ Merged</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1315">#1315</a></td><td>Seed Gadugi replication validation context</td><td>✅ Merged</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1316">#1316</a></td><td>Fix Gadugi workflow heredoc alignment</td><td>✅ Merged</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1317">#1317</a></td><td>Fix Gadugi tenant context seeding</td><td>✅ Merged</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1318">#1318</a></td><td>Replace Gadugi seed Python parsing with jq</td><td>✅ Merged</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1319">#1319</a></td><td>Use caller tenant for Gadugi source scan</td><td>✅ Merged</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1320">#1320</a></td><td>Use workflow source tenant for Gadugi scan</td><td>✅ Merged</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1321">#1321</a></td><td>Remove Gadugi JWT tenant guard</td><td>✅ Merged</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1322">#1322</a></td><td>Fix Gadugi target tenant Python lookup</td><td>✅ Merged</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1323">#1323</a></td><td>Fix gadugi-1302 request builder</td><td>✅ Merged</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1324">#1324</a></td><td>Fix pooled gadugi POSIX env check</td><td>✅ Merged</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1325">#1325</a></td><td>chore(deps)(deps): bump actions/download-artifact from 8.0.0 to 8.0.1</td><td>🔵 Open</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1326">#1326</a></td><td>Preserve pooled replication failure detail</td><td>✅ Merged</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1334">#1334</a></td><td>fix: regenerate cloud manifest before deploy</td><td>✅ Merged</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1335">#1335</a></td><td>chore(deps-dev): bump vite from 7.3.1 to 7.3.2 in /src/CyberGym.WebUI</td><td>🔵 Open</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1336">#1336</a></td><td>fix: write cloud manifest to workspace path</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1343">#1343</a></td><td>fix: keep deployment gameboard url on https</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1344">#1344</a></td><td>fix: prepare pooled tenant for replication validation</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1345">#1345</a></td><td>fix: avoid None pooled exercise id</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1346">#1346</a></td><td>fix: mark incomplete resets unhealthy</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1347">#1347</a></td><td>fix: reset dirty pooled tenants</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1348">#1348</a></td><td>fix: allow forced reset of unallocated tenants</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1349">#1349</a></td><td>fix: prepare pooled tenant candidates</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1350">#1350</a></td><td>fix: map pooled tenant lookup id</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1352">#1352</a></td><td>fix: keep pooled credential resolution in GameboardTenant</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1355">#1355</a></td><td>fix: use safe GameboardTenant credential chain</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1356">#1356</a></td><td>fix: unblock pooled candidate preparation</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1358">#1358</a></td><td>Add deployment quota preflight</td><td>🔵 Open</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1359">#1359</a></td><td>feat: add RadRoach vulnerability scanner workflow</td><td>🔵 Open</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1363">#1363</a></td><td>fix: reconcile WebUI E2E workflow remediation trail</td><td>🔵 Open</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1366">#1366</a></td><td>Fix live agent-mode and IaC UI integration flows</td><td>🔵 Open</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1367">#1367</a></td><td>Fix live Azure OpenAI managed identity selection</td><td>🔵 Open</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1372">#1372</a></td><td>fix: pin pooled replication to prepared tenant</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1373">#1373</a></td><td>fix: integrate live agent-mode and IaC UI remediation</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1374">#1374</a></td><td>fix: exclude legacy pooled proof seed</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1376">#1376</a></td><td>Fix pooled tenant workflow eligibility</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1377">#1377</a></td><td>fix: make live QA fail on missing auth</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1378">#1378</a></td><td>fix: wait for pooled reset readiness</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1379">#1379</a></td><td>Fix replication fallback blockers</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1380">#1380</a></td><td>fix: reuse active replication scans</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1389">#1389</a></td><td>fix: sync postgres secrets before deploy</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1390">#1390</a></td><td>fix: skip lighthouse directory validation</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1391">#1391</a></td><td>fix: stabilize WebUI proxy and live scan defaults</td><td>❌ Closed</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1392">#1392</a></td><td>fix: avoid postgres key vault writes in deploy</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1393">#1393</a></td><td>fix: harden agent-mode errors and UI audits</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1395">#1395</a></td><td>fix: harden UI audit assertions</td><td>❌ Closed</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1396">#1396</a></td><td>fix: track AI rewiring revisions by suffix</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1397">#1397</a></td><td>fix: wait for ready AI wiring revisions</td><td>❌ Closed</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1402">#1402</a></td><td>fix: recover replication plan RGs from ids</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1403">#1403</a></td><td>fix: reserve pooled replication tenants</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1405">#1405</a></td><td>fix: harden live QA workflow guards</td><td>❌ Closed</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1406">#1406</a></td><td>fix: stamp shared OpenAI deploy params</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1407">#1407</a></td><td>fix: default distributed OpenAI params</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1408">#1408</a></td><td>fix: close live UI outside-in gaps</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1409">#1409</a></td><td>fix: stage replication artifacts under tmp</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1410">#1410</a></td><td>fix: unblock integration deploy health gating</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1412">#1412</a></td><td>fix: reconcile postgres after deploy</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym/pull/1414">#1414</a></td><td>Fix the WebUI bug where loading the CyberGym dashboard page opens another dashboard window/tab on each load. Keep the fix narrowly scoped to the live owner path under src/CyberGym.WebUI, preserve inte</td><td>🔵 Open</td><td>2026-04-08</td></tr>
+</tbody></table>
+<h3>cloud-ecosystem-security/gremlinox</h3>
+<table>
+<thead><tr><th>#</th><th>Title</th><th>Status</th><th>Created</th></tr></thead>
+<tbody>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/gremlinox/pull/51">#51</a></td><td>Add math() step and lookahead/lookbehind regex support</td><td>✅ Merged</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/gremlinox/pull/52">#52</a></td><td>chore(deps-dev): bump vite from 8.0.3 to 8.0.5 in /wasm</td><td>🔵 Open</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/gremlinox/pull/53">#53</a></td><td>ci: add Windows wheel builds to package pipeline</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+</tbody></table>
+<h3>cloud-ecosystem-security/hyenas</h3>
+<table>
+<thead><tr><th>#</th><th>Title</th><th>Status</th><th>Created</th></tr></thead>
+<tbody>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/120">#120</a></td><td>made sarif import a bit more efficient, had to add import to LLM command config</td><td>✅ Merged</td><td>2026-03-28</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/193">#193</a></td><td>feat: add --deep option to hyenas scan</td><td>✅ Merged</td><td>2026-04-01</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/202">#202</a></td><td>fix: eliminate terminal UI flicker and restore terminal on exit</td><td>✅ Merged</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/203">#203</a></td><td>Rename module to scope</td><td>✅ Merged</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/205">#205</a></td><td>Refactor scan load and validate context</td><td>✅ Merged</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/206">#206</a></td><td>fix(prepare): use scope paths for scoped artifacts</td><td>✅ Merged</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/209">#209</a></td><td>Remove scope usage from scan stage</td><td>✅ Merged</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/211">#211</a></td><td>Refactor scan generate-ranking step</td><td>✅ Merged</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/213">#213</a></td><td>Move scan agent catalogue to refactor scan plugins</td><td>✅ Merged</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/215">#215</a></td><td>Tighten test guidance and remove low-value change-detector tests</td><td>✅ Merged</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/216">#216</a></td><td>Simplify TargetRepo and scope handling</td><td>✅ Merged</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/219">#219</a></td><td>Refactor scan enrichment flow</td><td>✅ Merged</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/220">#220</a></td><td>Strengthen ranking recall and move search_kb to runtime tools</td><td>✅ Merged</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/221">#221</a></td><td>cli: add <code>hyenas version</code> command, export tool_id and aligned scan_id</td><td>✅ Merged</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/224">#224</a></td><td>export: fix Windows compatibility for az CLI and git commands</td><td>✅ Merged</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/225">#225</a></td><td>Update access.yml</td><td>✅ Merged</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/227">#227</a></td><td>Add yingyhuang with Write role to access.yml</td><td>✅ Merged</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/228">#228</a></td><td>refactor(plugins): make call graph analyzer a plugin</td><td>✅ Merged</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/232">#232</a></td><td>Support Windows shell tooling</td><td>✅ Merged</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/234">#234</a></td><td>Replace minimatch with picomatch for ripgrep-compatible glob matching</td><td>✅ Merged</td><td>2026-04-03</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/236">#236</a></td><td>Refactor scan audit</td><td>✅ Merged</td><td>2026-04-03</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/239">#239</a></td><td>Refactor scan variant audit and post-processing</td><td>✅ Merged</td><td>2026-04-03</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/240">#240</a></td><td>Replace TargetRepoInfo.scopePath with TargetScope from HyenasRuntime</td><td>✅ Merged</td><td>2026-04-03</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/242">#242</a></td><td>export --kusto: only export listed findings, generate reports before submit</td><td>✅ Merged</td><td>2026-04-03</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/243">#243</a></td><td>Run dispatched catalogue scan agents</td><td>✅ Merged</td><td>2026-04-03</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/247">#247</a></td><td>Refactor scan manifest dependency removal</td><td>✅ Merged</td><td>2026-04-03</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/248">#248</a></td><td>export --kusto: listed findings only, generate reports, batch NDJSON upload</td><td>✅ Merged</td><td>2026-04-03</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/250">#250</a></td><td>Scaffold validate stage in refactored-src</td><td>✅ Merged</td><td>2026-04-03</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/258">#258</a></td><td>Sync prepare stage with module-related changes</td><td>✅ Merged</td><td>2026-04-03</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/259">#259</a></td><td>fix: show completed-step progress in terminal UI</td><td>✅ Merged</td><td>2026-04-03</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/266">#266</a></td><td>fix(scan-stage): store runtime artifacts under scan-stage</td><td>✅ Merged</td><td>2026-04-03</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/267">#267</a></td><td>Add findings list command to refactor CLI</td><td>✅ Merged</td><td>2026-04-04</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/270">#270</a></td><td>feat(threat-model): add Trust Boundaries section to THREATMODEL.md</td><td>✅ Merged</td><td>2026-04-04</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/274">#274</a></td><td>fix(validate): persist structured reachability metadata</td><td>✅ Merged</td><td>2026-04-04</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/275">#275</a></td><td>refactor(refactor-src): normalize agent payload fields to camelCase</td><td>✅ Merged</td><td>2026-04-04</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/276">#276</a></td><td>Refactor agents in scan stage</td><td>✅ Merged</td><td>2026-04-04</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/277">#277</a></td><td>feat(runtime-ui): show per-model token usage and cost</td><td>✅ Merged</td><td>2026-04-04</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/279">#279</a></td><td>feat: LLM-based finding dedup with per-file grouping</td><td>✅ Merged</td><td>2026-04-04</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/281">#281</a></td><td>Add <code>hyenas config</code> command for managing .hyenas-config/config.yaml</td><td>✅ Merged</td><td>2026-04-04</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/282">#282</a></td><td>feat: batch report generation, pipeline reorder, and config UX improvements</td><td>✅ Merged</td><td>2026-04-04</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/283">#283</a></td><td>feat: add hyenas diff command to compare artifact directories</td><td>✅ Merged</td><td>2026-04-04</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/285">#285</a></td><td>fix(runtime): strip leading slashes from scope pathspecs</td><td>✅ Merged</td><td>2026-04-04</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/286">#286</a></td><td>refactor(scan): rename refactor scan agents</td><td>✅ Merged</td><td>2026-04-04</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/287">#287</a></td><td>feat(web): add spinner and busy state to assistant chat</td><td>✅ Merged</td><td>2026-04-05</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/289">#289</a></td><td>feat: inlined config overrides via --config-set for hyenas run</td><td>✅ Merged</td><td>2026-04-05</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/290">#290</a></td><td>Add global jobs option to all commands</td><td>✅ Merged</td><td>2026-04-05</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/292">#292</a></td><td>Remove unnecessary as any conversion and no-explicit-any disables</td><td>✅ Merged</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/295">#295</a></td><td>feat: add call graph tools to reachability-reasoner (refactored + non-refactored)</td><td>✅ Merged</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/300">#300</a></td><td>refactor: use loadFileDbMap in scan.ts db fallback</td><td>✅ Merged</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/301">#301</a></td><td>refactor: use loadFileDbMap in scan-engine.ts db fallback walkers</td><td>✅ Merged</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/302">#302</a></td><td>Fix Claude 4.6 model identifiers</td><td>✅ Merged</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/303">#303</a></td><td>Replace yet another instance of loadFileDbMap</td><td>✅ Merged</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/305">#305</a></td><td>Use branded type to track trusted path boundary</td><td>✅ Merged</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/306">#306</a></td><td>Support config with --config command</td><td>✅ Merged</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/307">#307</a></td><td>Validate config models and fix slide build</td><td>✅ Merged</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/308">#308</a></td><td>Release v1.0</td><td>✅ Merged</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/309">#309</a></td><td>refactor(validate): implement static validation step</td><td>✅ Merged</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/314">#314</a></td><td>Implement confidence scoring step</td><td>✅ Merged</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/315">#315</a></td><td>Migrate runtime and prepare code into src</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/318">#318</a></td><td>build(deps-dev): bump vite from 7.3.1 to 7.3.2</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/320">#320</a></td><td>Refactor validate stage storage flow</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/322">#322</a></td><td>Use gpt-5.4 in generated defaults</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/324">#324</a></td><td>Use tsx for <code>hyenas</code> executable</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/326">#326</a></td><td>Split CLI commands into groups</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/328">#328</a></td><td>Update access.yml</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/329">#329</a></td><td>fix: fail-fast on prompt-limit errors and budget-aware repo-mapper</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/330">#330</a></td><td>Fix multi-model cost attribution in stats</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/332">#332</a></td><td>Use typed commander in subcommands</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/333">#333</a></td><td>Refactor validate to use runtime agent sessions</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/337">#337</a></td><td>Initial port of prepare stage</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/339">#339</a></td><td>Update AGENTS.md about incremental refactoring</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/343">#343</a></td><td>Refactor run command to properly handle global arguments</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/345">#345</a></td><td>Refactor scan runtime integration</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/348">#348</a></td><td>docs: refresh README quick start</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/351">#351</a></td><td>fix: remove duplicate LIKELY check in confidenceRank()</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/353">#353</a></td><td>feat: automated Copilot model drift detection</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/355">#355</a></td><td>fix: validate stage follow-ups</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/359">#359</a></td><td>feat: eval model runner + README refresh + dashboard logo</td><td>🔵 Open</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/360">#360</a></td><td>refactor(validate): use scan stage storage for validate flow</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/363">#363</a></td><td>kusto: add finding_group_id from dedup results</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/367">#367</a></td><td>Refactor scan runtime LLM, UI, and logging</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/368">#368</a></td><td>Migrate function-db path: db/ → prepare-stage/function-db/{analyzer}/</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/369">#369</a></td><td>Fix scan-engine.ts indentation</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/370">#370</a></td><td>ci: daily eval pipeline with gh-aw analysis agents (#352)</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/372">#372</a></td><td>Use global opts in all commands</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/380">#380</a></td><td>refactor(prove): migrate prove stage to runtime services</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/382">#382</a></td><td>Migrate knowledge base path: kb/ → prepare-stage/known-vulns/</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/383">#383</a></td><td>fix: use charset=utf-8 in Kusto export Content-Type header</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/386">#386</a></td><td>Refactor scan to use prepare-stage storage</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/388">#388</a></td><td>Harden scan JSON prompts</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/390">#390</a></td><td>Part 3/5 of #341: Migrate REPOMAP/THREATMODEL under prepare-stage/ and log/ to copilot-log/</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/391">#391</a></td><td>Use <code>createFromCmdOpts</code> everywhere</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/392">#392</a></td><td>Clean up scan plugin runtime and kv tool wiring</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/393">#393</a></td><td>Follow up on #116</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/394">#394</a></td><td>Part 4/5 of #341: Migrate scope schema to TargetScope and glob matching</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/395">#395</a></td><td>Move scan stage into src/stages/scan</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/402">#402</a></td><td>fix: model-drift-check creates PR instead of pushing directly to dev</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/403">#403</a></td><td>fix: empty tool name API errors in report generation</td><td>❌ Closed</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/404">#404</a></td><td>fix: empty tool name API errors in report generation</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/406">#406</a></td><td>Add SARIF 2.1.0 export to hyenas export command</td><td>🔵 Open</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/407">#407</a></td><td>refactor(validate): wire UI progress through HyenasRuntime</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/409">#409</a></td><td>fix: use GITHUB_TOKEN for model-drift-check PR creation</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/410">#410</a></td><td>feat: add pre-built per-platform release archives</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/412">#412</a></td><td>refactor: use model-pricing.json for drift detection, drop snapshot</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/413">#413</a></td><td>fix: add contents: read for model-drift-check checkout</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/414">#414</a></td><td>fix: use ARTIFACTS_PAT for gh CLI in model-drift-check</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/416">#416</a></td><td>fix: use COPILOT_GITHUB_TOKEN for Copilot SDK in model-drift-check</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/417">#417</a></td><td>chore: update copilot models snapshot</td><td>❌ Closed</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/418">#418</a></td><td>fix: only update snapshot when models change, add pricing coverage test</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/419">#419</a></td><td>fix: model refs must exist in both pricing AND snapshot</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/420">#420</a></td><td>feat: OpenTelemetry instrumentation, --otel CLI flag, and telemetry dashboard</td><td>🔵 Open</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/422">#422</a></td><td>Migrate src/config capabilities into src/runtime HyenasRuntime</td><td>✅ Merged</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/424">#424</a></td><td>HyenasRuntime: persist detail logs to .hyenas/logs/</td><td>✅ Merged</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/425">#425</a></td><td>Part 5/5 of #341: Remove manifest.json, meta.json, and change-manifest.json</td><td>✅ Merged</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/426">#426</a></td><td>Support --*-only flags in prepare stage</td><td>✅ Merged</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/427">#427</a></td><td>ci: enable smoke test on all platforms including Windows</td><td>✅ Merged</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/428">#428</a></td><td>refactor(runtime): route repo agent config through runtime</td><td>✅ Merged</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/429">#429</a></td><td>fix: CI UX improvements and analysis persistence (#400)</td><td>✅ Merged</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/434">#434</a></td><td>fix(stats): support refactored copilot-log directory layout</td><td>✅ Merged</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/435">#435</a></td><td>Use built-in tools for scan agents</td><td>✅ Merged</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/436">#436</a></td><td>Use schema retries for scan plugin findings</td><td>✅ Merged</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/437">#437</a></td><td>refactor(prove): replace makeSearchKbTool with kvTools runtime option</td><td>✅ Merged</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/441">#441</a></td><td>refactor(prove,validate): wire UI in validate and prove stage with HyenasRuntime</td><td>✅ Merged</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/442">#442</a></td><td>fix: increase eval-analysis timeout to 30 min (#440)</td><td>❌ Closed</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/445">#445</a></td><td>fix: eval-analysis timeout and cache-memory extension (#440)</td><td>✅ Merged</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/446">#446</a></td><td>Feature parity in prepare stage</td><td>✅ Merged</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/447">#447</a></td><td>feat: use full timestamp for results directory name (#400)</td><td>✅ Merged</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/448">#448</a></td><td>Add docs to <code>libDepPatterns</code> and give repo tools to threat model generator</td><td>✅ Merged</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/449">#449</a></td><td>refactor(scan): add progress tracking and UI context</td><td>✅ Merged</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/455">#455</a></td><td>fix(scan): refresh enrich cache on force runs</td><td>✅ Merged</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/459">#459</a></td><td>fix: precision dedup bug + restructure results directory (#400)</td><td>✅ Merged</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/460">#460</a></td><td>feat: add OpenTelemetry instrumentation (refactor branch port)</td><td>🔵 Open</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/461">#461</a></td><td>Update access.yml</td><td>✅ Merged</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/462">#462</a></td><td>fix: compare efficiency within project history, not across projects (#458)</td><td>✅ Merged</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/464">#464</a></td><td>fix(runtime): temporarily disable session semaphore in copilot manager</td><td>✅ Merged</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/469">#469</a></td><td>Merge refactor branch into dev</td><td>❌ Closed</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/470">#470</a></td><td>fix: enforce per-project-only comparison in agent prompt</td><td>✅ Merged</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/472">#472</a></td><td>Merge refactor branch into dev</td><td>✅ Merged</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/473">#473</a></td><td>Add dbirenbaum as a Maintain role member</td><td>✅ Merged</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/474">#474</a></td><td>docs: comprehensive eval system documentation + CI finding count fixes</td><td>✅ Merged</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/475">#475</a></td><td>devops: add Copilot instructions, issue format, and PR template</td><td>✅ Merged</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas/pull/477">#477</a></td><td>refactor: remove refactor-src directory and update imports</td><td>✅ Merged</td><td>2026-04-09</td></tr>
+</tbody></table>
+<h3>cloud-ecosystem-security/nationfirst-simulation</h3>
+<table>
+<thead><tr><th>#</th><th>Title</th><th>Status</th><th>Created</th></tr></thead>
+<tbody>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/nationfirst-simulation/pull/40">#40</a></td><td>feat: add adaptresearch003 data-plane cleanup script</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/nationfirst-simulation/pull/41">#41</a></td><td>feat: auto-generate cleanup scripts during honeypots.yaml generation</td><td>🔵 Open</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/nationfirst-simulation/pull/42">#42</a></td><td>fix: address code review feedback on TAP backport PR</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/nationfirst-simulation/pull/43">#43</a></td><td>fix: address code review feedback on TAP generation backport</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+</tbody></table>
+<h3>cloud-ecosystem-security/ontolohunt</h3>
+<table>
+<thead><tr><th>#</th><th>Title</th><th>Status</th><th>Created</th></tr></thead>
+<tbody>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/ontolohunt/pull/19">#19</a></td><td>Bump flatted from 3.3.3 to 3.4.2 in /src/ui/ontology_manager/frontend</td><td>✅ Merged</td><td>2026-03-21</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/ontolohunt/pull/20">#20</a></td><td>Bump next from 15.5.12 to 15.5.14 in /src/ui/report</td><td>✅ Merged</td><td>2026-03-22</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/ontolohunt/pull/21">#21</a></td><td>Bump picomatch from 2.3.1 to 2.3.2 in /src/ui/ontology_manager/frontend</td><td>✅ Merged</td><td>2026-03-26</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/ontolohunt/pull/22">#22</a></td><td>Bump picomatch in /src/ui/report</td><td>✅ Merged</td><td>2026-03-26</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/ontolohunt/pull/23">#23</a></td><td>Bump yaml from 1.10.2 to 1.10.3 in /src/ui/report</td><td>✅ Merged</td><td>2026-03-26</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/ontolohunt/pull/24">#24</a></td><td>Bump dompurify from 3.3.1 to 3.3.3 in /src/ui/report</td><td>✅ Merged</td><td>2026-03-28</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/ontolohunt/pull/28">#28</a></td><td>feat: Add Ridgeline scenario with verified ground truth files</td><td>✅ Merged</td><td>2026-04-04</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/ontolohunt/pull/30">#30</a></td><td>feat(rl): sweep v4 — statistically significant RL improvement across 5 models × 3 scenarios</td><td>✅ Merged</td><td>2026-04-04</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/ontolohunt/pull/31">#31</a></td><td>feat: integrate RL-guided relationship ranking into the production hunter</td><td>✅ Merged</td><td>2026-04-04</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/ontolohunt/pull/32">#32</a></td><td>Update CONTRIBUTING.md with PR expectations</td><td>✅ Merged</td><td>2026-04-04</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/ontolohunt/pull/36">#36</a></td><td>fix the path for the new repo name</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/ontolohunt/pull/38">#38</a></td><td>feat: RL production integration improvements — top-K filtering, TUI enhancements, snake eval consolidation</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/ontolohunt/pull/39">#39</a></td><td>Pull Request 15212240: bug: resolving gremlin file name with llm generated task name correctly + v58 cali...</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/ontolohunt/pull/40">#40</a></td><td>feat: per-enrichment fusion thresholds for beam time windows</td><td>✅ Merged</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/ontolohunt/pull/41">#41</a></td><td>feat: add OneBranch.ReleaseCandidate.yml pipeline</td><td>❌ Closed</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/ontolohunt/pull/42">#42</a></td><td>feat: add OneBranch.ReleaseCandidate.yml pipeline</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/ontolohunt/pull/43">#43</a></td><td>Add benchmark fixes for parallel runs</td><td>🔵 Open</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/ontolohunt/pull/44">#44</a></td><td>automated tests covering eval and the contract between the OntoloHunt hunt pipeline and the eval pipeline</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/ontolohunt/pull/45">#45</a></td><td>Add benchmark metrics improvements</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+</tbody></table>
+<h3>cloud-ecosystem-security/repromcp</h3>
+<table>
+<thead><tr><th>#</th><th>Title</th><th>Status</th><th>Created</th></tr></thead>
+<tbody>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/repromcp/pull/3">#3</a></td><td>User/adamrhodes/error detection</td><td>✅ Merged</td><td>2026-04-02</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/repromcp/pull/4">#4</a></td><td>Bump hono from 4.12.9 to 4.12.12</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/repromcp/pull/5">#5</a></td><td>chore: add workflow_dispatch to release workflow and CHANGELOG for v1.0.0</td><td>❌ Closed</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/repromcp/pull/6">#6</a></td><td>Bump @hono/node-server from 1.19.11 to 1.19.13</td><td>✅ Merged</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/repromcp/pull/7">#7</a></td><td>Enhance logging and refactor device connection handling</td><td>🔵 Open</td><td>2026-04-09</td></tr>
+</tbody></table>
+<h3>cloud-ecosystem-security/ridgeline-simulation</h3>
+<table>
+<thead><tr><th>#</th><th>Title</th><th>Status</th><th>Created</th></tr></thead>
+<tbody>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/ridgeline-simulation/pull/13">#13</a></td><td>Bump vite from 7.3.1 to 7.3.2 in /applications/2password/web</td><td>🔵 Open</td><td>2026-04-07</td></tr>
+</tbody></table>
 <h3>nlscng/gh-work-reports</h3>
 <table>
 <thead><tr><th>#</th><th>Title</th><th>Status</th><th>Created</th></tr></thead>
@@ -93,8 +535,22 @@ section meta-runner-2
 <tr><td><a href="https://github.com/nlscng/gh-work-reports">nlscng/gh-work-reports</a></td><td>Automated GitHub activity reports</td><td>2026-04-09</td></tr>
 <tr><td><a href="https://github.com/nlscng/meta-runner-2">nlscng/meta-runner-2</a></td><td>Agentic Netrunner meta learning agent — teaches metagame concepts through adapti</td><td>2026-04-09</td></tr>
 <tr><td><a href="https://github.com/nlscng/ai-agents-for-beginners">nlscng/ai-agents-for-beginners</a></td><td>—</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/Powderfinger">cloud-ecosystem-security/Powderfinger</a></td><td>Dynamic generation of killchain resources from descriptions of weaknesses - inte</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/nationfirst-simulation">cloud-ecosystem-security/nationfirst-simulation</a></td><td>Adapt research - resources to deploy nationfirst simulation</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/cybergym">cloud-ecosystem-security/cybergym</a></td><td>Agentic AI Wargaming Cyber Gym Service</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/SedanDelivery">cloud-ecosystem-security/SedanDelivery</a></td><td>GraphDB with GQL engine in rust on top of Redis</td><td>2026-04-08</td></tr>
 <tr><td><a href="https://github.com/nelsoncheng_microsoft/synthetic-data-foundation">nelsoncheng_microsoft/synthetic-data-foundation</a></td><td>ADAPT Synthetic Data Foundation — data platform for simulation telemetry, labele</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/adaptctl">cloud-ecosystem-security/adaptctl</a></td><td>Utility for managing simulation environments</td><td>2026-04-07</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/ridgeline-simulation">cloud-ecosystem-security/ridgeline-simulation</a></td><td>Adapt research - resources to deploy ridgeline simulation</td><td>2026-04-07</td></tr>
 <tr><td><a href="https://github.com/nelsoncheng_microsoft/gh-work-reports">nelsoncheng_microsoft/gh-work-reports</a></td><td>Automated GitHub work reports with GitHub Pages</td><td>2026-04-06</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas-windows-prove">cloud-ecosystem-security/hyenas-windows-prove</a></td><td>Hyenas Prove for Windows</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas">cloud-ecosystem-security/hyenas</a></td><td>Hyenas to discover and validate the security bugs</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas-plugins">cloud-ecosystem-security/hyenas-plugins</a></td><td>Hyenas Plugins</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/ontolohunt">cloud-ecosystem-security/ontolohunt</a></td><td>OntoloHunt on EMU</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/repromcp">cloud-ecosystem-security/repromcp</a></td><td>repromcp</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/project-helix">cloud-ecosystem-security/project-helix</a></td><td>project-helix</td><td>2026-04-09</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/gremlinox">cloud-ecosystem-security/gremlinox</a></td><td>High-performance in-memory Gremlin graph engine implemented in Rust with Python</td><td>2026-04-08</td></tr>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/hyenas-artifacts">cloud-ecosystem-security/hyenas-artifacts</a></td><td>Hyenas artifacts to navigate the scanning results</td><td>2026-04-07</td></tr>
 </tbody></table>
         <footer>Generated by gh-work-report</footer>
     </div>
