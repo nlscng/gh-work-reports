@@ -60,33 +60,54 @@ def get_tokens() -> list[tuple[str | None, str]]:
     return tokens
 
 
+def _parse_repo_lines(raw: str, all_repos: dict[str, dict]) -> None:
+    """Parse JSON-lines output into all_repos dict, deduplicating by name."""
+    for line in raw.strip().splitlines():
+        if line.strip():
+            try:
+                obj = json.loads(line)
+                if isinstance(obj, dict):
+                    name = obj.get("nameWithOwner", "")
+                    if name and name not in all_repos:
+                        all_repos[name] = obj
+            except json.JSONDecodeError:
+                pass
+
+
 def gather_repos(start_date: str) -> list[dict]:
     """Gather repos from all tokens, including org repos the user is a member of."""
     all_repos: dict[str, dict] = {}
+    jq_user = (
+        f'.[] | select(.pushed_at >= "{start_date}") | '
+        '{ nameWithOwner: .full_name, url: .html_url, '
+        'description: .description, pushedAt: .pushed_at, isPrivate: .private }'
+    )
+    jq_org = jq_user  # same shape
+
     for token, label in get_tokens():
+        # 1. User's own + collaborator + org-member repos
         print(f"  Gathering repos ({label})...", file=sys.stderr)
-        # Use REST /user/repos with query params in URL (not -f, which triggers POST)
-        jq_filter = (
-            f'.[] | select(.pushed_at >= "{start_date}") | '
-            '{ nameWithOwner: .full_name, url: .html_url, '
-            'description: .description, pushedAt: .pushed_at, isPrivate: .private }'
-        )
         raw = run_gh([
             "api",
             "/user/repos?affiliation=owner,collaborator,organization_member&sort=pushed&per_page=100",
             "--paginate",
-            "--jq", jq_filter,
+            "--jq", jq_user,
         ], token=token)
-        for line in raw.strip().splitlines():
-            if line.strip():
-                try:
-                    obj = json.loads(line)
-                    if isinstance(obj, dict):
-                        name = obj.get("nameWithOwner", "")
-                        if name not in all_repos:
-                            all_repos[name] = obj
-                except json.JSONDecodeError:
-                    pass
+        _parse_repo_lines(raw, all_repos)
+
+        # 2. Directly query each org in INCLUDE_OWNERS as fallback
+        #    (some PATs don't return org repos via /user/repos)
+        for org in INCLUDE_OWNERS:
+            if "/" not in org and org not in ("nlscng", "nelsoncheng_microsoft"):
+                print(f"  Gathering org repos: {org} ({label})...", file=sys.stderr)
+                raw = run_gh([
+                    "api",
+                    f"/orgs/{org}/repos?sort=pushed&per_page=100",
+                    "--paginate",
+                    "--jq", jq_org,
+                ], token=token)
+                _parse_repo_lines(raw, all_repos)
+
     return [r for r in all_repos.values() if should_include(r.get("nameWithOwner", ""))]
 
 
@@ -103,6 +124,62 @@ def gather_prs_for_user(username: str, start_date: str, token: str | None) -> li
     return created + merged
 
 
+def _gather_org_prs(org: str, start_date: str, token: str | None) -> list[dict]:
+    """Fallback: list PRs from an org's repos via the pulls API."""
+    prs: list[dict] = []
+    # Get org repos first
+    repos_raw = run_gh([
+        "api", f"/orgs/{org}/repos?sort=pushed&per_page=100",
+        "--paginate", "--jq", ".[].full_name",
+    ], token=token)
+    for repo_name in repos_raw.strip().splitlines():
+        repo_name = repo_name.strip()
+        if not repo_name or not should_include(repo_name):
+            continue
+        # Get closed/merged PRs from this repo in the time window
+        raw = run_gh([
+            "api", f"/repos/{repo_name}/pulls?state=closed&sort=updated&direction=desc&per_page=50",
+            "--paginate",
+            "--jq", (
+                f'.[] | select(.merged_at >= "{start_date}" or .created_at >= "{start_date}") | '
+                '{ number: .number, title: .title, '
+                'repository: { nameWithOwner: (.base.repo.full_name) }, '
+                'state: (if .merged_at then "merged" else "closed" end), '
+                'createdAt: .created_at, closedAt: (.merged_at // .closed_at), '
+                'url: .html_url }'
+            ),
+        ], token=token)
+        for line in raw.strip().splitlines():
+            if line.strip():
+                try:
+                    obj = json.loads(line)
+                    if isinstance(obj, dict):
+                        prs.append(obj)
+                except json.JSONDecodeError:
+                    pass
+        # Also get open PRs
+        raw = run_gh([
+            "api", f"/repos/{repo_name}/pulls?state=open&sort=updated&direction=desc&per_page=50",
+            "--jq", (
+                f'.[] | select(.created_at >= "{start_date}") | '
+                '{ number: .number, title: .title, '
+                'repository: { nameWithOwner: (.base.repo.full_name) }, '
+                'state: "open", '
+                'createdAt: .created_at, closedAt: null, '
+                'url: .html_url }'
+            ),
+        ], token=token)
+        for line in raw.strip().splitlines():
+            if line.strip():
+                try:
+                    obj = json.loads(line)
+                    if isinstance(obj, dict):
+                        prs.append(obj)
+                except json.JSONDecodeError:
+                    pass
+    return prs
+
+
 def gather_prs(start_date: str) -> list[dict]:
     all_prs: list[dict] = []
     for token, label in get_tokens():
@@ -111,6 +188,12 @@ def gather_prs(start_date: str) -> list[dict]:
         username = user_json if user_json and not user_json.startswith("[") else "@me"
         print(f"  Gathering PRs for {username} ({label})...", file=sys.stderr)
         all_prs.extend(gather_prs_for_user(username, start_date, token))
+
+        # Also query org repos directly (search API may miss private org PRs)
+        for org in INCLUDE_OWNERS:
+            if "/" not in org and org not in ("nlscng", "nelsoncheng_microsoft"):
+                print(f"  Gathering org PRs: {org} ({label})...", file=sys.stderr)
+                all_prs.extend(_gather_org_prs(org, start_date, token))
 
     seen: set[str] = set()
     result: list[dict] = []
