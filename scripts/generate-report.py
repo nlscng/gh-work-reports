@@ -65,19 +65,16 @@ def gather_repos(start_date: str) -> list[dict]:
     all_repos: dict[str, dict] = {}
     for token, label in get_tokens():
         print(f"  Gathering repos ({label})...", file=sys.stderr)
-        # Use REST /user/repos which includes org repos via membership affiliation
+        # Use REST /user/repos with query params in URL (not -f, which triggers POST)
         jq_filter = (
             f'.[] | select(.pushed_at >= "{start_date}") | '
             '{ nameWithOwner: .full_name, url: .html_url, '
             'description: .description, pushedAt: .pushed_at, isPrivate: .private }'
         )
         raw = run_gh([
-            "api", "/user/repos",
+            "api",
+            "/user/repos?affiliation=owner,collaborator,organization_member&sort=pushed&per_page=100",
             "--paginate",
-            "-X", "GET",
-            "-f", "affiliation=owner,collaborator,organization_member",
-            "-f", "sort=pushed",
-            "-f", "per_page=100",
             "--jq", jq_filter,
         ], token=token)
         for line in raw.strip().splitlines():
