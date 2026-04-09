@@ -124,10 +124,9 @@ def gather_prs_for_user(username: str, start_date: str, token: str | None) -> li
     return created + merged
 
 
-def _gather_org_prs(org: str, start_date: str, token: str | None) -> list[dict]:
-    """Fallback: list PRs from an org's repos via the pulls API."""
+def _gather_org_prs(org: str, start_date: str, username: str, token: str | None) -> list[dict]:
+    """Fallback: list PRs from an org's repos via the pulls API, filtered by author."""
     prs: list[dict] = []
-    # Get org repos first
     repos_raw = run_gh([
         "api", f"/orgs/{org}/repos?sort=pushed&per_page=100",
         "--paginate", "--jq", ".[].full_name",
@@ -136,12 +135,13 @@ def _gather_org_prs(org: str, start_date: str, token: str | None) -> list[dict]:
         repo_name = repo_name.strip()
         if not repo_name or not should_include(repo_name):
             continue
-        # Get closed/merged PRs from this repo in the time window
+        # Get closed/merged PRs authored by this user
         raw = run_gh([
             "api", f"/repos/{repo_name}/pulls?state=closed&sort=updated&direction=desc&per_page=50",
             "--paginate",
             "--jq", (
-                f'.[] | select(.merged_at >= "{start_date}" or .created_at >= "{start_date}") | '
+                f'.[] | select(.user.login == "{username}") | '
+                f'select(.merged_at >= "{start_date}" or .created_at >= "{start_date}") | '
                 '{ number: .number, title: .title, '
                 'repository: { nameWithOwner: (.base.repo.full_name) }, '
                 'state: (if .merged_at then "merged" else "closed" end), '
@@ -157,11 +157,12 @@ def _gather_org_prs(org: str, start_date: str, token: str | None) -> list[dict]:
                         prs.append(obj)
                 except json.JSONDecodeError:
                     pass
-        # Also get open PRs
+        # Also get open PRs authored by this user
         raw = run_gh([
             "api", f"/repos/{repo_name}/pulls?state=open&sort=updated&direction=desc&per_page=50",
             "--jq", (
-                f'.[] | select(.created_at >= "{start_date}") | '
+                f'.[] | select(.user.login == "{username}") | '
+                f'select(.created_at >= "{start_date}") | '
                 '{ number: .number, title: .title, '
                 'repository: { nameWithOwner: (.base.repo.full_name) }, '
                 'state: "open", '
@@ -193,7 +194,7 @@ def gather_prs(start_date: str) -> list[dict]:
         for org in INCLUDE_OWNERS:
             if "/" not in org and org not in ("nlscng", "nelsoncheng_microsoft"):
                 print(f"  Gathering org PRs: {org} ({label})...", file=sys.stderr)
-                all_prs.extend(_gather_org_prs(org, start_date, token))
+                all_prs.extend(_gather_org_prs(org, start_date, username, token))
 
     seen: set[str] = set()
     result: list[dict] = []
