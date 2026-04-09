@@ -1,6 +1,7 @@
 # gh-work-reports
 
-Automated GitHub activity reports with GitHub Pages site.
+Automated GitHub activity reports with GitHub Pages site. Supports dual-account
+aggregation (personal + EMU/work) so a single report covers all your activity.
 
 ## How it works
 
@@ -11,18 +12,35 @@ Automated GitHub activity reports with GitHub Pages site.
 
 ## Setup
 
-### 1. Create a PAT (Personal Access Token)
+### 1. Create PATs (Personal Access Tokens)
 
-Create a **fine-grained** or **classic** PAT from your **EMU account** (`nelsoncheng_microsoft`) with `repo` scope. This is what lets the workflows see private org repos.
+You need **two** PATs — one per GitHub account:
 
-1. Go to https://github.com/settings/tokens (while logged in as the EMU account)
-2. Generate new token → Classic → scope: `repo`, `read:org`
-3. Copy the token
+| Secret Name | Account | How to Create |
+|---|---|---|
+| `GH_WORK_REPORTS_TOKEN` | **nlscng** (personal) | [github.com/settings/tokens](https://github.com/settings/tokens) logged in as `nlscng` |
+| `GH_WORK_REPORTS_TOKEN_MS` | **nelsoncheng_microsoft** (EMU) | [github.com/settings/tokens](https://github.com/settings/tokens) logged in as `nelsoncheng_microsoft` |
 
-### 2. Add the secret
+Both PATs need scopes: **`repo`** + **`read:org`**
 
-1. Go to this repo's Settings → Secrets and variables → Actions
-2. New repository secret: `REPORT_TOKEN` = the PAT from step 1
+- The **nlscng** PAT provides: personal repos (`nlscng/*`)
+- The **nelsoncheng_microsoft** PAT provides: org repos (`cloud-ecosystem-security/*`) and EMU repos
+
+### 2. Add the secrets
+
+Go to [repo Settings → Secrets → Actions](https://github.com/nlscng/gh-work-reports/settings/secrets/actions) and add both:
+
+```bash
+# Or via CLI (logged in as nlscng):
+gh secret set GH_WORK_REPORTS_TOKEN --repo nlscng/gh-work-reports
+# Paste nlscng PAT when prompted
+
+gh secret set GH_WORK_REPORTS_TOKEN_MS --repo nlscng/gh-work-reports
+# Paste nelsoncheng_microsoft PAT when prompted
+```
+
+> **Single-account mode**: If only `GH_WORK_REPORTS_TOKEN` is set, reports
+> will cover that account only. The secondary token is optional.
 
 ### 3. Enable GitHub Pages
 
@@ -46,7 +64,7 @@ python3 scripts/build-html.py
 
 ## Repo filtering
 
-Only `cloud-ecosystem-security/*` repos are included. Personal repos are excluded.
+Activity from all three owners is included: `cloud-ecosystem-security`, `nelsoncheng_microsoft`, `nlscng`.
 Edit `EXCLUDE_REPOS` and `INCLUDE_OWNERS` in `scripts/generate-report.py` to adjust.
 
 ## Architecture

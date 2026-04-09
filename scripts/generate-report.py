@@ -2,7 +2,8 @@
 """Generate a GitHub work report for a given time window.
 
 Supports multiple GitHub tokens to aggregate activity across accounts.
-Set GH_TOKEN (primary) and optionally GH_TOKEN_SECONDARY for a second account.
+Set GH_TOKEN (primary — nlscng personal) and optionally GH_TOKEN_SECONDARY
+(nelsoncheng_microsoft EMU) for cross-account coverage.
 
 Usage:
     python3 generate-report.py [--days N] [--start YYYY-MM-DD] [--end YYYY-MM-DD]
@@ -15,7 +16,7 @@ import json
 import os
 import subprocess
 import sys
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 # Repos to exclude
 EXCLUDE_REPOS = {
@@ -60,23 +61,24 @@ def get_tokens() -> list[tuple[str | None, str]]:
 
 
 def gather_repos(start_date: str) -> list[dict]:
-    query = """query($cursor: String) {
-      viewer {
-        repositories(first: 100, after: $cursor, orderBy: {field: PUSHED_AT, direction: DESC}) {
-          pageInfo { hasNextPage endCursor }
-          nodes {
-            nameWithOwner url description pushedAt homepageUrl isPrivate
-          }
-        }
-      }
-    }"""
+    """Gather repos from all tokens, including org repos the user is a member of."""
     all_repos: dict[str, dict] = {}
     for token, label in get_tokens():
         print(f"  Gathering repos ({label})...", file=sys.stderr)
+        # Use REST /user/repos which includes org repos via membership affiliation
+        jq_filter = (
+            f'.[] | select(.pushed_at >= "{start_date}") | '
+            '{ nameWithOwner: .full_name, url: .html_url, '
+            'description: .description, pushedAt: .pushed_at, isPrivate: .private }'
+        )
         raw = run_gh([
-            "api", "graphql", "--paginate",
-            "-f", f"query={query}",
-            "--jq", f'.data.viewer.repositories.nodes[] | select(.pushedAt >= "{start_date}")',
+            "api", "/user/repos",
+            "--paginate",
+            "-X", "GET",
+            "-f", "affiliation=owner,collaborator,organization_member",
+            "-f", "sort=pushed",
+            "-f", "per_page=100",
+            "--jq", jq_filter,
         ], token=token)
         for line in raw.strip().splitlines():
             if line.strip():
@@ -190,7 +192,7 @@ def generate_report(start_date: str, end_date: str, days: int) -> str:
 
     lines = []
     lines.append(f"# GitHub Activity Report: {start_date} → {end_date}\n")
-    lines.append(f"> **Generated**: {datetime.utcnow().strftime('%Y-%m-%d')}")
+    lines.append(f"> **Generated**: {datetime.now(timezone.utc).strftime('%Y-%m-%d')}")
     lines.append(f"> **Period**: {period_label}\n")
 
     # Summary table
@@ -286,8 +288,8 @@ def main():
         days = (d1 - d0).days
     else:
         days = args.days
-        end_date = datetime.utcnow().strftime("%Y-%m-%d")
-        start_date = (datetime.utcnow() - timedelta(days=days)).strftime("%Y-%m-%d")
+        end_date = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        start_date = (datetime.now(timezone.utc) - timedelta(days=days)).strftime("%Y-%m-%d")
 
     report = generate_report(start_date, end_date, days)
 
