@@ -21,7 +21,9 @@ from datetime import datetime, timedelta, timezone
 # Repos to exclude
 EXCLUDE_REPOS = {
     "nlscng/meta-runner",
+    "nlscng/meta-runner-2",
     "nlscng/turbo-doodle",
+    "nlscng/loonshot-exploration",
 }
 
 # Only include repos from these owners (empty = no filter)
@@ -280,7 +282,7 @@ def generate_report(start_date: str, end_date: str, days: int) -> str:
     lines.append("## Activity Summary\n")
     lines.append("| Metric | Count |")
     lines.append("|--------|-------|")
-    lines.append(f"| Projects active | {len(repos)} |")
+    lines.append(f"| Projects active | {len(by_repo)} |")
     lines.append(f"| PRs created | {len(prs)} |")
     lines.append(f"| PRs merged | {merged} |")
     lines.append(f"| PRs open | {open_prs} |")
@@ -340,11 +342,22 @@ def generate_report(start_date: str, end_date: str, days: int) -> str:
             lines.append(f"| [#{i['number']}]({i['url']}) | {i['title']} | {repo} | {icon} {i['state'].title()} |")
         lines.append("")
 
-    # Active repos
+    # Active repos — only repos where the user has PRs or issues
+    pr_repo_names = set()
+    for pr in prs:
+        repo = pr.get("repository", {})
+        name = repo.get("nameWithOwner", "") if isinstance(repo, dict) else str(repo)
+        if name:
+            pr_repo_names.add(name)
+    for i in issues:
+        name = i.get("repository", {}).get("nameWithOwner", "")
+        if name:
+            pr_repo_names.add(name)
+    active_repos = [r for r in repos if r.get("nameWithOwner", "") in pr_repo_names]
     lines.append("## Active Repositories\n")
     lines.append("| Repository | Description | Last Push |")
     lines.append("|-----------|-------------|-----------|")
-    for r in repos:
+    for r in active_repos:
         desc = (r.get("description") or "—")[:80]
         pushed = r["pushedAt"][:10]
         lines.append(f"| [{r['nameWithOwner']}]({r['url']}) | {desc} | {pushed} |")
