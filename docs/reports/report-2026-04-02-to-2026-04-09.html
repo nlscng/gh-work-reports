@@ -34,12 +34,43 @@
         pre { background: var(--surface); padding: 1rem; border-radius: 6px; overflow-x: auto; margin: 1rem 0; }
         code { font-family: 'SFMono-Regular', Consolas, monospace; font-size: 0.9em; }
         .mermaid { background: var(--surface); padding: 1.5rem; border-radius: 6px; margin: 1rem 0; text-align: center; }
+        ul { margin: 0.5rem 0 1rem 1.5rem; }
+        li { margin: 0.25rem 0; }
+        .toolbar { display: flex; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .toolbar button {
+            background: var(--surface); color: var(--accent); border: 1px solid var(--border);
+            padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-size: 0.9rem;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .toolbar button:hover { border-color: var(--accent); background: #1c2333; }
+        .toolbar button.copied { border-color: var(--green); color: var(--green); }
+        #teams-text-panel {
+            display: none; background: var(--surface); border: 1px solid var(--border);
+            border-radius: 6px; padding: 1rem; margin-bottom: 1.5rem; position: relative;
+        }
+        #teams-text-panel pre {
+            white-space: pre-wrap; word-wrap: break-word; font-size: 0.85rem;
+            max-height: 400px; overflow-y: auto; margin: 0; background: transparent;
+            padding: 0; border-radius: 0;
+        }
+        #teams-text-panel .close-btn {
+            position: absolute; top: 0.5rem; right: 0.75rem; background: none;
+            border: none; color: var(--text-muted); cursor: pointer; font-size: 1.2rem;
+        }
         footer { text-align: center; padding: 2rem 0; margin-top: 2rem; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.85rem; }
     </style>
 </head>
 <body>
     <div class="container">
-        <a class="back" href="../index.html">← All Reports</a>
+        <a class="back" href="../index.html">&larr; All Reports</a>
+        <div class="toolbar">
+            <button onclick="copyForTeams()" id="copy-btn">&#128203; Copy for Teams</button>
+            <button onclick="toggleTeamsPreview()" id="preview-btn">&#128065; Preview Teams text</button>
+        </div>
+        <div id="teams-text-panel">
+            <button class="close-btn" onclick="toggleTeamsPreview()">&times;</button>
+            <pre id="teams-text-content"></pre>
+        </div>
         <h1>GitHub Activity Report: 2026-04-02 → 2026-04-09</h1>
 <blockquote><strong>Generated</strong>: 2026-04-09</blockquote>
 <blockquote><strong>Period</strong>: 7 days</blockquote>
@@ -104,6 +135,107 @@ section gh-work-reports
     <script type="module">
         import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
         mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+    </script>
+    <script>
+        function buildTeamsText() {
+            const doc = document;
+            let text = '';
+            const h1 = doc.querySelector('h1');
+            if (h1) text += h1.textContent + '\n\n';
+
+            // Highlights section
+            const headings = doc.querySelectorAll('h2, h3');
+            let inHighlights = false;
+            let highlightsText = '';
+            for (const h of headings) {
+                if (h.tagName === 'H2' && h.textContent.includes('Highlights')) {
+                    inHighlights = true;
+                    highlightsText += '\ud83d\udccc HIGHLIGHTS\n';
+                    continue;
+                }
+                if (h.tagName === 'H2' && inHighlights) { inHighlights = false; }
+                if (inHighlights && h.tagName === 'H3') {
+                    highlightsText += '\n' + h.textContent + '\n';
+                    let el = h.nextElementSibling;
+                    while (el && el.tagName === 'UL') {
+                        for (const li of el.querySelectorAll('li')) {
+                            const link = li.querySelector('a');
+                            const liText = li.textContent.trim();
+                            if (link) {
+                                highlightsText += '  \u2022 ' + liText.replace(link.textContent, link.textContent + ' (' + link.href + ')') + '\n';
+                            } else {
+                                highlightsText += '  \u2022 ' + liText + '\n';
+                            }
+                        }
+                        el = el.nextElementSibling;
+                    }
+                }
+            }
+            if (highlightsText) text += highlightsText + '\n';
+
+            // Summary stats
+            const summaryH2 = Array.from(doc.querySelectorAll('h2')).find(h => h.textContent.includes('Activity Summary'));
+            if (summaryH2) {
+                const table = summaryH2.nextElementSibling;
+                if (table && table.tagName === 'TABLE') {
+                    text += '\ud83d\udcca SUMMARY\n';
+                    for (const row of table.querySelectorAll('tbody tr, tr:not(:first-child)')) {
+                        const cells = row.querySelectorAll('td');
+                        if (cells.length >= 2) text += '  ' + cells[0].textContent.trim() + ': ' + cells[1].textContent.trim() + '\n';
+                    }
+                    text += '\n';
+                }
+            }
+
+            // PR sections
+            const prH2 = Array.from(doc.querySelectorAll('h2')).find(h => h.textContent.includes('Pull Requests'));
+            if (prH2) {
+                text += '\ud83d\udd00 PULL REQUESTS\n';
+                let el = prH2.nextElementSibling;
+                while (el) {
+                    if (el.tagName === 'H2') break;
+                    if (el.tagName === 'H3') text += '\n  ' + el.textContent + '\n';
+                    if (el.tagName === 'TABLE') {
+                        for (const row of el.querySelectorAll('tbody tr, tr:not(:first-child)')) {
+                            const cells = row.querySelectorAll('td');
+                            if (cells.length >= 3) {
+                                const link = cells[0].querySelector('a');
+                                const num = cells[0].textContent.trim();
+                                const title = cells[1].textContent.trim();
+                                const status = cells[2].textContent.trim();
+                                const url = link ? ' (' + link.href + ')' : '';
+                                text += '    ' + num + ' ' + title + ' [' + status + ']' + url + '\n';
+                            }
+                        }
+                    }
+                    el = el.nextElementSibling;
+                }
+            }
+            return text.trim();
+        }
+
+        function copyForTeams() {
+            const text = buildTeamsText();
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.getElementById('copy-btn');
+                btn.textContent = '\u2705 Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = '\ud83d\udccb Copy for Teams';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        function toggleTeamsPreview() {
+            const panel = document.getElementById('teams-text-panel');
+            if (panel.style.display === 'none' || !panel.style.display) {
+                document.getElementById('teams-text-content').textContent = buildTeamsText();
+                panel.style.display = 'block';
+            } else {
+                panel.style.display = 'none';
+            }
+        }
     </script>
 </body>
 </html>
