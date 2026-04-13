@@ -34,12 +34,43 @@
         pre { background: var(--surface); padding: 1rem; border-radius: 6px; overflow-x: auto; margin: 1rem 0; }
         code { font-family: 'SFMono-Regular', Consolas, monospace; font-size: 0.9em; }
         .mermaid { background: var(--surface); padding: 1.5rem; border-radius: 6px; margin: 1rem 0; text-align: center; }
+        ul { margin: 0.5rem 0 1rem 1.5rem; }
+        li { margin: 0.25rem 0; }
+        .toolbar { display: flex; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .toolbar button {
+            background: var(--surface); color: var(--accent); border: 1px solid var(--border);
+            padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-size: 0.9rem;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .toolbar button:hover { border-color: var(--accent); background: #1c2333; }
+        .toolbar button.copied { border-color: var(--green); color: var(--green); }
+        #teams-text-panel {
+            display: none; background: var(--surface); border: 1px solid var(--border);
+            border-radius: 6px; padding: 1rem; margin-bottom: 1.5rem; position: relative;
+        }
+        #teams-text-panel pre {
+            white-space: pre-wrap; word-wrap: break-word; font-size: 0.85rem;
+            max-height: 400px; overflow-y: auto; margin: 0; background: transparent;
+            padding: 0; border-radius: 0;
+        }
+        #teams-text-panel .close-btn {
+            position: absolute; top: 0.5rem; right: 0.75rem; background: none;
+            border: none; color: var(--text-muted); cursor: pointer; font-size: 1.2rem;
+        }
         footer { text-align: center; padding: 2rem 0; margin-top: 2rem; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.85rem; }
     </style>
 </head>
 <body>
     <div class="container">
-        <a class="back" href="../index.html">← All Reports</a>
+        <a class="back" href="../index.html">&larr; All Reports</a>
+        <div class="toolbar">
+            <button onclick="copyForTeams()" id="copy-btn">&#128203; Copy for Teams</button>
+            <button onclick="toggleTeamsPreview()" id="preview-btn">&#128065; Preview Teams text</button>
+        </div>
+        <div id="teams-text-panel">
+            <button class="close-btn" onclick="toggleTeamsPreview()">&times;</button>
+            <pre id="teams-text-content"></pre>
+        </div>
         <h1>GitHub Activity Report: 2026-04-06 → 2026-04-13</h1>
 <blockquote><strong>Generated</strong>: 2026-04-13</blockquote>
 <blockquote><strong>Period</strong>: 7 days</blockquote>
@@ -47,83 +78,150 @@
 <table>
 <thead><tr><th>Metric</th><th>Count</th></tr></thead>
 <tbody>
-<tr><td>Projects active</td><td>3</td></tr>
-<tr><td>PRs created</td><td>9</td></tr>
-<tr><td>PRs merged</td><td>9</td></tr>
+<tr><td>Projects active</td><td>1</td></tr>
+<tr><td>PRs created</td><td>2</td></tr>
+<tr><td>PRs merged</td><td>2</td></tr>
 <tr><td>PRs open</td><td>0</td></tr>
-<tr><td>Issues opened</td><td>3</td></tr>
+<tr><td>Issues opened</td><td>0</td></tr>
 </tbody></table>
-<h2>PR Distribution</h2>
-<div class="mermaid">
-pie title PRs by Project
-&quot;nationfirst-simulation&quot; : 5
-&quot;synthetic-data-foundation&quot; : 3
-&quot;gh-work-reports&quot; : 1
-</div>
+<h2>Highlights</h2>
+<h3>🔧 Bug Fixes & Improvements</h3>
+<ul>
+<li><strong>gh-work-reports</strong>: fix: dual-account repo gathering and README (<a href="https://github.com/nlscng/gh-work-reports/pull/3">#3</a>)</li>
+</ul>
+<h3>📝 Documentation</h3>
+<ul>
+<li><strong>gh-work-reports</strong>: docs: add self-hosted runner setup instructions (<a href="https://github.com/nlscng/gh-work-reports/pull/4">#4</a>)</li>
+</ul>
 <h2>Activity Timeline</h2>
 <div class="mermaid">
 gantt
 title PR Activity (2026-04-06 → 2026-04-13)
 dateFormat YYYY-MM-DD
-section nationfirst-simulation
-#40 feat: add adaptresearch003 data-plane cl :done, 2026-04-07, 2026-04-07
-#41 feat: auto-generate cleanup scripts duri :done, 2026-04-08, 2026-04-10
-#42 fix: address code review feedback on TAP :done, 2026-04-08, 2026-04-08
-#43 fix: address code review feedback on TAP :done, 2026-04-08, 2026-04-08
-#44 feat: add attack scenario users, payment :done, 2026-04-09, 2026-04-10
-section synthetic-data-foundation
-#1 docs: Acar brainstorming meeting notes &amp; :done, 2026-04-12, 2026-04-12
-#2 docs: Noah brainstorming meeting notes &amp; :done, 2026-04-12, 2026-04-12
-#5 Add daily issue reminder workflow :done, 2026-04-12, 2026-04-12
 section gh-work-reports
 #3 fix: dual-account repo gathering and REA :done, 2026-04-09, 2026-04-09
+#4 docs: add self-hosted runner setup instr :done, 2026-04-13, 2026-04-13
 </div>
 <h2>Pull Requests</h2>
-<h3>cloud-ecosystem-security/nationfirst-simulation</h3>
-<table>
-<thead><tr><th>#</th><th>Title</th><th>Status</th><th>Created</th></tr></thead>
-<tbody>
-<tr><td><a href="https://github.com/cloud-ecosystem-security/nationfirst-simulation/pull/40">#40</a></td><td>feat: add adaptresearch003 data-plane cleanup script</td><td>✅ Merged</td><td>2026-04-07</td></tr>
-<tr><td><a href="https://github.com/cloud-ecosystem-security/nationfirst-simulation/pull/41">#41</a></td><td>feat: auto-generate cleanup scripts during honeypots.yaml generation</td><td>✅ Merged</td><td>2026-04-08</td></tr>
-<tr><td><a href="https://github.com/cloud-ecosystem-security/nationfirst-simulation/pull/42">#42</a></td><td>fix: address code review feedback on TAP backport PR</td><td>✅ Merged</td><td>2026-04-08</td></tr>
-<tr><td><a href="https://github.com/cloud-ecosystem-security/nationfirst-simulation/pull/43">#43</a></td><td>fix: address code review feedback on TAP generation backport</td><td>✅ Merged</td><td>2026-04-08</td></tr>
-<tr><td><a href="https://github.com/cloud-ecosystem-security/nationfirst-simulation/pull/44">#44</a></td><td>feat: add attack scenario users, payments workload, and SharePoint site</td><td>✅ Merged</td><td>2026-04-09</td></tr>
-</tbody></table>
-<h3>nelsoncheng_microsoft/synthetic-data-foundation</h3>
-<table>
-<thead><tr><th>#</th><th>Title</th><th>Status</th><th>Created</th></tr></thead>
-<tbody>
-<tr><td><a href="https://github.com/nelsoncheng_microsoft/synthetic-data-foundation/pull/1">#1</a></td><td>docs: Acar brainstorming meeting notes & consumer demand signal</td><td>✅ Merged</td><td>2026-04-12</td></tr>
-<tr><td><a href="https://github.com/nelsoncheng_microsoft/synthetic-data-foundation/pull/2">#2</a></td><td>docs: Noah brainstorming meeting notes & red team demand signal</td><td>✅ Merged</td><td>2026-04-12</td></tr>
-<tr><td><a href="https://github.com/nelsoncheng_microsoft/synthetic-data-foundation/pull/5">#5</a></td><td>Add daily issue reminder workflow</td><td>✅ Merged</td><td>2026-04-12</td></tr>
-</tbody></table>
 <h3>nlscng/gh-work-reports</h3>
 <table>
 <thead><tr><th>#</th><th>Title</th><th>Status</th><th>Created</th></tr></thead>
 <tbody>
 <tr><td><a href="https://github.com/nlscng/gh-work-reports/pull/3">#3</a></td><td>fix: dual-account repo gathering and README</td><td>✅ Merged</td><td>2026-04-09</td></tr>
-</tbody></table>
-<h2>Issues</h2>
-<table>
-<thead><tr><th>#</th><th>Title</th><th>Repository</th><th>Status</th></tr></thead>
-<tbody>
-<tr><td><a href="https://github.com/nelsoncheng_microsoft/synthetic-data-foundation/issues/6">#6</a></td><td>Daily Issue Reminders</td><td>nelsoncheng_microsoft/synthetic-data-foundation</td><td>🔵 Open</td></tr>
-<tr><td><a href="https://github.com/nelsoncheng_microsoft/synthetic-data-foundation/issues/4">#4</a></td><td>Explore synthetic graph data generation for red agent (Ingressor) GNN training</td><td>nelsoncheng_microsoft/synthetic-data-foundation</td><td>🔵 Open</td></tr>
-<tr><td><a href="https://github.com/nelsoncheng_microsoft/synthetic-data-foundation/issues/3">#3</a></td><td>Follow up: Orchestration meeting, Siva sync, Acar notification</td><td>nelsoncheng_microsoft/synthetic-data-foundation</td><td>🔵 Open</td></tr>
+<tr><td><a href="https://github.com/nlscng/gh-work-reports/pull/4">#4</a></td><td>docs: add self-hosted runner setup instructions</td><td>✅ Merged</td><td>2026-04-13</td></tr>
 </tbody></table>
 <h2>Active Repositories</h2>
 <table>
 <thead><tr><th>Repository</th><th>Description</th><th>Last Push</th></tr></thead>
 <tbody>
 <tr><td><a href="https://github.com/nlscng/gh-work-reports">nlscng/gh-work-reports</a></td><td>Automated GitHub activity reports</td><td>2026-04-13</td></tr>
-<tr><td><a href="https://github.com/nelsoncheng_microsoft/synthetic-data-foundation">nelsoncheng_microsoft/synthetic-data-foundation</a></td><td>ADAPT Synthetic Data Foundation — data platform for simulation telemetry, labele</td><td>2026-04-12</td></tr>
-<tr><td><a href="https://github.com/cloud-ecosystem-security/nationfirst-simulation">cloud-ecosystem-security/nationfirst-simulation</a></td><td>Adapt research - resources to deploy nationfirst simulation</td><td>2026-04-12</td></tr>
 </tbody></table>
         <footer>Generated by gh-work-report</footer>
     </div>
     <script type="module">
         import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
         mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+    </script>
+    <script>
+        function buildTeamsText() {
+            const doc = document;
+            let text = '';
+            const h1 = doc.querySelector('h1');
+            if (h1) text += h1.textContent + '\n\n';
+
+            // Highlights section
+            const headings = doc.querySelectorAll('h2, h3');
+            let inHighlights = false;
+            let highlightsText = '';
+            for (const h of headings) {
+                if (h.tagName === 'H2' && h.textContent.includes('Highlights')) {
+                    inHighlights = true;
+                    highlightsText += '\ud83d\udccc HIGHLIGHTS\n';
+                    continue;
+                }
+                if (h.tagName === 'H2' && inHighlights) { inHighlights = false; }
+                if (inHighlights && h.tagName === 'H3') {
+                    highlightsText += '\n' + h.textContent + '\n';
+                    let el = h.nextElementSibling;
+                    while (el && el.tagName === 'UL') {
+                        for (const li of el.querySelectorAll('li')) {
+                            const link = li.querySelector('a');
+                            const liText = li.textContent.trim();
+                            if (link) {
+                                highlightsText += '  \u2022 ' + liText.replace(link.textContent, link.textContent + ' (' + link.href + ')') + '\n';
+                            } else {
+                                highlightsText += '  \u2022 ' + liText + '\n';
+                            }
+                        }
+                        el = el.nextElementSibling;
+                    }
+                }
+            }
+            if (highlightsText) text += highlightsText + '\n';
+
+            // Summary stats
+            const summaryH2 = Array.from(doc.querySelectorAll('h2')).find(h => h.textContent.includes('Activity Summary'));
+            if (summaryH2) {
+                const table = summaryH2.nextElementSibling;
+                if (table && table.tagName === 'TABLE') {
+                    text += '\ud83d\udcca SUMMARY\n';
+                    for (const row of table.querySelectorAll('tbody tr, tr:not(:first-child)')) {
+                        const cells = row.querySelectorAll('td');
+                        if (cells.length >= 2) text += '  ' + cells[0].textContent.trim() + ': ' + cells[1].textContent.trim() + '\n';
+                    }
+                    text += '\n';
+                }
+            }
+
+            // PR sections
+            const prH2 = Array.from(doc.querySelectorAll('h2')).find(h => h.textContent.includes('Pull Requests'));
+            if (prH2) {
+                text += '\ud83d\udd00 PULL REQUESTS\n';
+                let el = prH2.nextElementSibling;
+                while (el) {
+                    if (el.tagName === 'H2') break;
+                    if (el.tagName === 'H3') text += '\n  ' + el.textContent + '\n';
+                    if (el.tagName === 'TABLE') {
+                        for (const row of el.querySelectorAll('tbody tr, tr:not(:first-child)')) {
+                            const cells = row.querySelectorAll('td');
+                            if (cells.length >= 3) {
+                                const link = cells[0].querySelector('a');
+                                const num = cells[0].textContent.trim();
+                                const title = cells[1].textContent.trim();
+                                const status = cells[2].textContent.trim();
+                                const url = link ? ' (' + link.href + ')' : '';
+                                text += '    ' + num + ' ' + title + ' [' + status + ']' + url + '\n';
+                            }
+                        }
+                    }
+                    el = el.nextElementSibling;
+                }
+            }
+            return text.trim();
+        }
+
+        function copyForTeams() {
+            const text = buildTeamsText();
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.getElementById('copy-btn');
+                btn.textContent = '\u2705 Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = '\ud83d\udccb Copy for Teams';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        function toggleTeamsPreview() {
+            const panel = document.getElementById('teams-text-panel');
+            if (panel.style.display === 'none' || !panel.style.display) {
+                document.getElementById('teams-text-content').textContent = buildTeamsText();
+                panel.style.display = 'block';
+            } else {
+                panel.style.display = 'none';
+            }
+        }
     </script>
 </body>
 </html>

@@ -255,6 +255,67 @@ def state_icon(state: str) -> str:
     return {"merged": "✅", "closed": "❌", "open": "🔵"}.get(state, "⬜")
 
 
+def generate_highlights(by_repo: dict[str, list[dict]], issues: list[dict]) -> list[str]:
+    """Generate a highlights/themes section from PR and issue data."""
+    lines = []
+    lines.append("## Highlights\n")
+
+    # Group PRs by theme based on conventional commit prefixes and keywords
+    themes: dict[str, list[dict]] = {}
+    for repo, repo_prs in by_repo.items():
+        short = repo.split("/")[-1]
+        for pr in repo_prs:
+            title = pr["title"]
+            # Determine theme from title
+            if title.startswith("feat"):
+                theme = "New Features"
+            elif title.startswith("fix"):
+                theme = "Bug Fixes & Improvements"
+            elif title.startswith("docs"):
+                theme = "Documentation"
+            elif any(kw in title.lower() for kw in ["refactor", "cleanup", "clean up", "remove"]):
+                theme = "Code Health"
+            elif any(kw in title.lower() for kw in ["ci", "workflow", "deploy", "pipeline", "runner"]):
+                theme = "CI/CD & Automation"
+            elif any(kw in title.lower() for kw in ["security", "auth", "credential", "secret"]):
+                theme = "Security"
+            else:
+                theme = "Other Work"
+            themes.setdefault(theme, []).append({**pr, "_short_repo": short})
+
+    theme_icons = {
+        "New Features": "🚀",
+        "Bug Fixes & Improvements": "🔧",
+        "Documentation": "📝",
+        "Code Health": "🧹",
+        "CI/CD & Automation": "⚙️",
+        "Security": "🔒",
+        "Other Work": "📦",
+    }
+
+    # Order: features first, then fixes, then the rest
+    order = ["New Features", "Bug Fixes & Improvements", "Security",
+             "CI/CD & Automation", "Documentation", "Code Health", "Other Work"]
+    for theme in order:
+        if theme not in themes:
+            continue
+        icon = theme_icons.get(theme, "📌")
+        prs = themes[theme]
+        lines.append(f"### {icon} {theme}\n")
+        for pr in prs:
+            lines.append(f"- **{pr['_short_repo']}**: {pr['title']} ([#{pr['number']}]({pr['url']}))")
+        lines.append("")
+
+    if issues:
+        lines.append("### 📋 Issues Opened\n")
+        for i in issues:
+            repo = i.get("repository", {}).get("nameWithOwner", "").split("/")[-1]
+            lines.append(f"- **{repo}**: {i['title']} ([#{i['number']}]({i['url']}))")
+        lines.append("")
+
+    return lines
+
+
 def generate_report(start_date: str, end_date: str, days: int) -> str:
     print(f"Gathering data for {start_date} → {end_date} ({days} days)...", file=sys.stderr)
 
@@ -288,6 +349,9 @@ def generate_report(start_date: str, end_date: str, days: int) -> str:
     lines.append(f"| PRs open | {open_prs} |")
     lines.append(f"| Issues opened | {len(issues)} |")
     lines.append("")
+
+    # Highlights / Themes
+    lines.extend(generate_highlights(by_repo, issues))
 
     # PR distribution pie chart
     if len(by_repo) > 1:
