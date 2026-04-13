@@ -309,7 +309,7 @@ def generate_highlights(by_repo: dict[str, list[dict]], issues: list[dict]) -> l
     if issues:
         lines.append("### 📋 Issues Opened\n")
         for i in issues:
-            repo = i.get("repository", {}).get("nameWithOwner", "").split("/")[-1]
+            repo = (i.get("repository") or {}).get("nameWithOwner", "").split("/")[-1]
             lines.append(f"- **{repo}**: {i['title']} ([#{i['number']}]({i['url']}))")
         lines.append("")
 

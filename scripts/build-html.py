@@ -120,7 +120,7 @@ HTML_TEMPLATE = """\
                             const link = li.querySelector('a');
                             const liText = li.textContent.trim();
                             if (link) {{
-                                highlightsText += '  \\u2022 ' + liText.replace(link.textContent, link.textContent + ' (' + link.href + ')') + '\\n';
+                                highlightsText += '  \\u2022 ' + liText.replace('(' + link.textContent + ')', link.textContent + ' (' + link.href + ')') + '\\n';
                             }} else {{
                                 highlightsText += '  \\u2022 ' + liText + '\\n';
                             }}
