@@ -140,7 +140,7 @@ HTML_TEMPLATE = """\
                 if (h.tagName === 'H2' && inHighlights) {{ inHighlights = false; }}
                 if (inHighlights && h.tagName === 'H3') {{
                     // Skip Issues subsection
-                    if (h.textContent.includes('Issues')) continue;
+                    if (h.textContent.includes('Issues Opened')) continue;
                     text += h.textContent.trim() + '\\n';
                     let el = h.nextElementSibling;
                     while (el && el.tagName === 'UL') {{
@@ -162,7 +162,7 @@ HTML_TEMPLATE = """\
                             if (!byRepo[repo]) byRepo[repo] = [];
                             byRepo[repo].push(entry);
                         }}
-                        for (const [repo, entries] of Object.entries(byRepo)) {{
+                        for (const [repo, entries] of Object.entries(byRepo).sort((a,b) => a[0].localeCompare(b[0]))) {{
                             text += '  ' + repo + ': ' + entries.join('; ') + '\\n';
                         }}
                         el = el.nextElementSibling;
