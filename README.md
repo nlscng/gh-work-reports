@@ -47,7 +47,54 @@ gh secret set GH_WORK_REPORTS_TOKEN_MS --repo nlscng/gh-work-reports
 1. Go to Settings → Pages
 2. Source: **GitHub Actions** (not "Deploy from a branch")
 
-### 4. Run the first report
+### 4. Set up the self-hosted runner
+
+The EMU enterprise disables GitHub-hosted runners, so this repo uses a
+self-hosted runner on the WSL2 machine `nelsoncheng-wsl`.
+
+**First-time setup:**
+
+```bash
+# Download and extract (update version as needed)
+mkdir -p ~/actions-runner && cd ~/actions-runner
+curl -sL https://github.com/actions/runner/releases/latest/download/actions-runner-linux-x64-2.333.1.tar.gz \
+  | tar xz
+
+# Register with the repo (get a fresh token each time)
+TOKEN=$(gh api -X POST repos/nlscng/gh-work-reports/actions/runners/registration-token --jq '.token')
+./config.sh \
+  --url https://github.com/nlscng/gh-work-reports \
+  --token "$TOKEN" \
+  --name "nelsoncheng-wsl" \
+  --labels "self-hosted,Linux,X64,work-reports" \
+  --unattended --replace
+
+# Install as a systemd service (survives reboots)
+sudo ./svc.sh install
+sudo ./svc.sh start
+sudo ./svc.sh status   # verify it's active
+```
+
+**Managing the service:**
+
+```bash
+sudo ./svc.sh status     # check runner health
+sudo ./svc.sh stop       # stop the runner
+sudo ./svc.sh start      # start again
+sudo ./svc.sh uninstall  # remove the service entirely
+```
+
+**Re-registering** (if the runner gets orphaned):
+
+```bash
+cd ~/actions-runner
+sudo ./svc.sh stop
+REMOVE_TOKEN=$(gh api -X POST repos/nlscng/gh-work-reports/actions/runners/remove-token --jq '.token')
+./config.sh remove --token "$REMOVE_TOKEN"
+# Then repeat the registration steps above
+```
+
+### 5. Run the first report
 
 Go to Actions → "Weekly Work Report" → Run workflow → Pick days → Run
 
