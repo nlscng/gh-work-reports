@@ -171,74 +171,75 @@ section nationfirst-simulation
             const doc = document;
             let text = '';
             const h1 = doc.querySelector('h1');
-            if (h1) text += h1.textContent + '\n\n';
 
-            // Highlights section
+            // One-line header: "📊 Apr 6–13 | 11 PRs merged, 3 projects"
+            const summaryH2 = Array.from(doc.querySelectorAll('h2')).find(h => h.textContent.includes('Activity Summary'));
+            let merged = 0, projects = 0;
+            if (summaryH2) {
+                const table = summaryH2.nextElementSibling;
+                if (table && table.tagName === 'TABLE') {
+                    for (const row of table.querySelectorAll('tbody tr, tr:not(:first-child)')) {
+                        const cells = row.querySelectorAll('td');
+                        if (cells.length >= 2) {
+                            const label = cells[0].textContent.trim().toLowerCase();
+                            const val = cells[1].textContent.trim();
+                            if (label.includes('merged')) merged = val;
+                            if (label.includes('active')) projects = val;
+                        }
+                    }
+                }
+            }
+            // Extract date range from h1 (e.g. "GitHub Activity Report: 2026-04-06 → 2026-04-13")
+            if (h1) {
+                const m = h1.textContent.match(/(\d{4}-\d{2}-\d{2}).*(\d{4}-\d{2}-\d{2})/);
+                if (m) {
+                    text += '\ud83d\udcca ' + m[1] + ' \u2192 ' + m[2];
+                } else {
+                    text += '\ud83d\udcca ' + h1.textContent;
+                }
+            }
+            if (merged || projects) text += ' | ' + merged + ' PRs merged, ' + projects + ' projects';
+            text += '\n\n';
+
+            // Highlights grouped by theme — skip Issues subsection
             const headings = doc.querySelectorAll('h2, h3');
             let inHighlights = false;
-            let highlightsText = '';
             for (const h of headings) {
                 if (h.tagName === 'H2' && h.textContent.includes('Highlights')) {
                     inHighlights = true;
-                    highlightsText += '\ud83d\udccc HIGHLIGHTS\n';
                     continue;
                 }
                 if (h.tagName === 'H2' && inHighlights) { inHighlights = false; }
                 if (inHighlights && h.tagName === 'H3') {
-                    highlightsText += '\n' + h.textContent + '\n';
+                    // Skip Issues subsection
+                    if (h.textContent.includes('Issues Opened')) continue;
+                    text += h.textContent.trim() + '\n';
                     let el = h.nextElementSibling;
                     while (el && el.tagName === 'UL') {
+                        // Group list items by repo for compactness
+                        const byRepo = {};
                         for (const li of el.querySelectorAll('li')) {
+                            const strong = li.querySelector('strong');
                             const link = li.querySelector('a');
-                            const liText = li.textContent.trim();
-                            if (link) {
-                                highlightsText += '  \u2022 ' + liText.replace('(' + link.textContent + ')', link.textContent + ' (' + link.href + ')') + '\n';
-                            } else {
-                                highlightsText += '  \u2022 ' + liText + '\n';
-                            }
+                            const repo = strong ? strong.textContent.trim() : 'Other';
+                            // Extract PR description: text between "repo: " and " (#N)"
+                            let desc = li.textContent.trim();
+                            if (strong) desc = desc.substring(desc.indexOf(strong.textContent) + strong.textContent.length);
+                            desc = desc.replace(/^:\s*/, '').trim();
+                            // Remove the "(#N)" suffix since we'll add our own
+                            const num = link ? link.textContent.trim() : '';
+                            const url = link ? link.href : '';
+                            if (num) desc = desc.replace('(' + num + ')', '').trim();
+                            const entry = desc + (url ? ' (' + url + ')' : '');
+                            if (!byRepo[repo]) byRepo[repo] = [];
+                            byRepo[repo].push(entry);
+                        }
+                        for (const [repo, entries] of Object.entries(byRepo).sort((a,b) => a[0].localeCompare(b[0]))) {
+                            text += '  ' + repo + ': ' + entries.join('; ') + '\n';
                         }
                         el = el.nextElementSibling;
                     }
-                }
-            }
-            if (highlightsText) text += highlightsText + '\n';
-
-            // Summary stats
-            const summaryH2 = Array.from(doc.querySelectorAll('h2')).find(h => h.textContent.includes('Activity Summary'));
-            if (summaryH2) {
-                const table = summaryH2.nextElementSibling;
-                if (table && table.tagName === 'TABLE') {
-                    text += '\ud83d\udcca SUMMARY\n';
-                    for (const row of table.querySelectorAll('tbody tr, tr:not(:first-child)')) {
-                        const cells = row.querySelectorAll('td');
-                        if (cells.length >= 2) text += '  ' + cells[0].textContent.trim() + ': ' + cells[1].textContent.trim() + '\n';
-                    }
                     text += '\n';
-                }
-            }
-
-            // PR sections
-            const prH2 = Array.from(doc.querySelectorAll('h2')).find(h => h.textContent.includes('Pull Requests'));
-            if (prH2) {
-                text += '\ud83d\udd00 PULL REQUESTS\n';
-                let el = prH2.nextElementSibling;
-                while (el) {
-                    if (el.tagName === 'H2') break;
-                    if (el.tagName === 'H3') text += '\n  ' + el.textContent + '\n';
-                    if (el.tagName === 'TABLE') {
-                        for (const row of el.querySelectorAll('tbody tr, tr:not(:first-child)')) {
-                            const cells = row.querySelectorAll('td');
-                            if (cells.length >= 3) {
-                                const link = cells[0].querySelector('a');
-                                const num = cells[0].textContent.trim();
-                                const title = cells[1].textContent.trim();
-                                const status = cells[2].textContent.trim();
-                                const url = link ? ' (' + link.href + ')' : '';
-                                text += '    ' + num + ' ' + title + ' [' + status + ']' + url + '\n';
-                            }
-                        }
-                    }
-                    el = el.nextElementSibling;
                 }
             }
             return text.trim();
