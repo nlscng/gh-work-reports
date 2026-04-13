@@ -149,7 +149,7 @@ HTML_TEMPLATE = """\
                         for (const li of el.querySelectorAll('li')) {{
                             const strong = li.querySelector('strong');
                             const link = li.querySelector('a');
-                            const repo = strong ? strong.textContent.trim() : '';
+                            const repo = strong ? strong.textContent.trim() : 'Other';
                             // Extract PR description: text between "repo: " and " (#N)"
                             let desc = li.textContent.trim();
                             if (strong) desc = desc.substring(desc.indexOf(strong.textContent) + strong.textContent.length);
