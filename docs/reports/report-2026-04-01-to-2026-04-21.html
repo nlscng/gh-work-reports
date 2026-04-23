@@ -213,6 +213,51 @@ section synthetic-data-foundation
 <tr><td><a href="https://github.com/cloud-ecosystem-security/nationfirst-simulation">cloud-ecosystem-security/nationfirst-simulation</a></td><td>Adapt research - resources to deploy nationfirst simulation</td><td>2026-04-20</td></tr>
 <tr><td><a href="https://github.com/nelsoncheng_microsoft/synthetic-data-foundation">nelsoncheng_microsoft/synthetic-data-foundation</a></td><td>ADAPT Synthetic Data Foundation — data platform for simulation telemetry, labele</td><td>2026-04-17</td></tr>
 </tbody></table>
+<p>---</p>
+<h2>Impact & Themes (from stand-up notes, Apr 1 → Apr 21)</h2>
+<p>Six themes emerge from the four stand-ups (4/6, 4/13, 4/15, 4/20) that frame what the PRs above actually unlocked.</p>
+<h3>1. Unblocked the 4/1 MAIDAP demo crunch</h3>
+<ul>
+<li>Deployed <strong>GPT-5.4 Pro in Azure AI Foundry</strong> so MAIDAP wasn't stalled waiting on Opus access; coordinated permissions, resource discovery, and stakeholder alignment (Charlotte, Ashley, Hemal).</li>
+<li>Restored NationFirst validation by fixing expired/broken TAPs and clarifying which users legitimately had no inboxes — eliminated last-minute access failures.</li>
+<li>Cancelled unneeded meetings once 4/1 was scoped to docs/metrics, reducing coordination overhead.</li>
+</ul>
+<h3>2. Hardened the NationFirst simulation as a reliable platform</h3>
+<ul>
+<li>TAP values now survive honeypot regeneration (<a href="https://github.com/cloud-ecosystem-security/nationfirst-simulation/pull/39">#39</a>).</li>
+<li>Data-plane teardown is fully scripted (cleanup PRs <a href="https://github.com/cloud-ecosystem-security/nationfirst-simulation/pull/40">#40</a>, <a href="https://github.com/cloud-ecosystem-security/nationfirst-simulation/pull/41">#41</a>) — no more ad-hoc resets.</li>
+<li>New attack-scenario users, payments workload, SharePoint site, killchain users, and <code>kv-prod-payments-use</code> added to honeypots inventory (<a href="https://github.com/cloud-ecosystem-security/nationfirst-simulation/pull/44">#44</a>, <a href="https://github.com/cloud-ecosystem-security/nationfirst-simulation/pull/45">#45</a>).</li>
+<li>Deployed <strong>adaptresearch003</strong> end-to-end with Manny — ready for two new killchains and continued Ingressor runs.</li>
+</ul>
+<h3>3. Took Ingressor (red agent) from "installed" to "running real evals"</h3>
+<ul>
+<li>Paired with Manuel to get Ingressor operational; paired with Noah Baertsch to switch to <strong>MCP-based execution</strong> (no CLI session conflicts → safe concurrent runs).</li>
+<li>Generated <strong>5 batches of Ingressor runs on NationFirst with Opus 4.7 across 4 killchains</strong> for baseline evals.</li>
+<li>Started <a href="https://github.com/nelsoncheng_microsoft/ingressor-batch-monitor"><code>ingressor-batch-monitor</code></a> — stop-gap CLI for orchestration, scheduling, monitoring, and reset/cleanup until a larger orchestration tool exists.</li>
+<li>Backup eval-runner coverage: coordinated with Limin on OpenClaw setup.</li>
+</ul>
+<h3>4. Shipped tooling that compounds: adaptctl + gh-work-reports</h3>
+<ul>
+<li><strong>adaptctl v0.1.0</strong> released — first official cut of the cloud-security-posture CLI; self-update (<a href="https://github.com/cloud-ecosystem-security/adaptctl/pull/44">#44</a>) and time-bounded storage cleanup (<a href="https://github.com/cloud-ecosystem-security/adaptctl/pull/45">#45</a>).</li>
+<li><strong>gh-work-reports</strong> dual-account aggregation, self-hosted runner, "Copy for Teams" button, and compacted Teams text — turned weekly reporting into a one-click artifact.</li>
+</ul>
+<h3>5. Acted as integration glue across MAIDAP, infra, agents, and tooling</h3>
+<p>Continuously translated intent and constraints across teams, reinforced what does/doesn't live in the tenant, and served as real-time escalation during ingress and validation runs. Hands-on partnerships this period: <strong>Noah</strong> (Ingressor/MCP, agentic architecture), <strong>Manuel</strong> (Ingressor + adaptresearch003), <strong>Siva</strong> (Investigation Agent install + amplihack), <strong>Acar</strong> (blue-agent realism vs. simulation richness), <strong>Limin/Mauricio</strong> (eval runners), <strong>Ashley</strong> (admin/licensing for research tenant).</p>
+<h3>6. Mentorship and team development</h3>
+<ul>
+<li>Started structured mentoring with <strong>Harnoor</strong> (system context, integration patterns, longer-term integration with our work).</li>
+<li>1:1s with <strong>Divya</strong> (clearer expectations as scope grows) and <strong>Luke</strong> (execution, ownership, career visibility).</li>
+</ul>
+<h3>Numbers</h3>
+<ul>
+<li><strong>16 PRs created / 15 merged / 1 open</strong> across <strong>4 work projects</strong> (adaptctl, nationfirst-simulation, ingressor-batch-monitor, synthetic-data-foundation).</li>
+<li>New repos kicked off: <strong>synthetic-data-foundation</strong> (architecture for simulation telemetry pipeline + agentic data services across 12 org repos), <strong>ingressor-batch-monitor</strong>.</li>
+<li>Released <strong>adaptctl v0.1.0</strong>.</li>
+<li>Out part of 4/14–4/15 (family + car).</li>
+</ul>
+<p>---</p>
+<h2>📋 Teams-Ready Summary (copy/paste)</h2>
+<pre><code>📊 Impact — Apr 1 → Apr 21 (3 weeks)<br><br>🎯 Unblocked 4/1 MAIDAP demo<br>  • Deployed GPT-5.4 Pro in Azure AI Foundry so MAIDAP wasn&#x27;t blocked on Opus<br>  • Fixed expired/broken TAPs on NationFirst — eliminated demo-time access failures<br>  • Cancelled unneeded meetings once 4/1 scope was clear (docs/metrics-focused)<br><br>🛡️ NationFirst simulation hardening (7 PRs)<br>  • TAPs survive honeypot regeneration (#39)<br>  • Data-plane cleanup is scripted &amp; repeatable (#40, #41)<br>  • New killchain users, payments workload, SharePoint site, kv-prod-payments-use (#44, #45)<br>  • adaptresearch003 deployed end-to-end with Manny — ready for 2 new killchains<br><br>🔴 Ingressor: install → real evals<br>  • Switched to MCP-based execution with Noah → safe concurrent runs<br>  • Generated 5 batches of Ingressor runs on NationFirst with Opus 4.7 across 4 killchains (baseline evals)<br>  • Started ingressor-batch-monitor CLI (scheduling, monitoring, cleanup) as orchestration stop-gap<br>  • Backed up eval-runner capacity by syncing with Limin on OpenClaw<br><br>🛠️ Tooling that compounds<br>  • adaptctl v0.1.0 shipped — self-update + time-bounded storage cleanup<br>  • gh-work-reports: dual-account aggregation, &quot;Copy for Teams&quot; button, compact Teams text<br>  • synthetic-data-foundation repo kicked off — telemetry pipeline + agentic data services across 12 org repos<br><br>🤝 Integration glue + mentorship<br>  • Hands-on with Manuel, Noah, Siva, Acar, Limin/Mauricio, Ashley to keep MAIDAP/infra/agents aligned<br>  • Mentoring: Harnoor (kickoff 1:1, system context); follow-ups with Divya &amp; Luke<br><br>📈 By the numbers<br>  • 16 PRs created / 15 merged across 4 projects<br>  • 2 new repos kicked off (synthetic-data-foundation, ingressor-batch-monitor)<br>  • adaptctl v0.1.0 released<br><br>🔗 Full report: https://nlscng.github.io/gh-work-reports/reports/report-2026-04-01-to-2026-04-21.html</code></pre>
         <footer>Generated by gh-work-report</footer>
     </div>
     <script type="module">
