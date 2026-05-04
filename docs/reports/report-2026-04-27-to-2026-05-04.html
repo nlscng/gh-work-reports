@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Activity Report: 2026-04-27 → 2026-05-04</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --surface: #161b22;
+            --border: #30363d;
+            --text: #e6edf3;
+            --text-muted: #8b949e;
+            --accent: #58a6ff;
+            --green: #3fb950;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            background: var(--bg); color: var(--text); line-height: 1.6;
+        }
+        .container { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem; }
+        .back { display: inline-block; color: var(--accent); text-decoration: none; margin-bottom: 1.5rem; }
+        h1 { font-size: 1.75rem; margin-bottom: 0.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+        h2 { font-size: 1.3rem; margin: 2rem 0 0.75rem; color: var(--accent); }
+        h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; }
+        blockquote { color: var(--text-muted); border-left: 3px solid var(--border); padding-left: 1rem; margin: 0.5rem 0 1rem; }
+        table { border-collapse: collapse; width: 100%; margin: 0.75rem 0; }
+        th, td { border: 1px solid var(--border); padding: 0.5rem 0.75rem; text-align: left; font-size: 0.9rem; }
+        th { background: var(--surface); }
+        tr:nth-child(even) { background: var(--surface); }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        pre { background: var(--surface); padding: 1rem; border-radius: 6px; overflow-x: auto; margin: 1rem 0; }
+        code { font-family: 'SFMono-Regular', Consolas, monospace; font-size: 0.9em; }
+        .mermaid { background: var(--surface); padding: 1.5rem; border-radius: 6px; margin: 1rem 0; text-align: center; }
+        ul { margin: 0.5rem 0 1rem 1.5rem; }
+        li { margin: 0.25rem 0; }
+        .toolbar { display: flex; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .toolbar button {
+            background: var(--surface); color: var(--accent); border: 1px solid var(--border);
+            padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-size: 0.9rem;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .toolbar button:hover { border-color: var(--accent); background: #1c2333; }
+        .toolbar button.copied { border-color: var(--green); color: var(--green); }
+        #teams-text-panel {
+            display: none; background: var(--surface); border: 1px solid var(--border);
+            border-radius: 6px; padding: 1rem; margin-bottom: 1.5rem; position: relative;
+        }
+        #teams-text-panel pre {
+            white-space: pre-wrap; word-wrap: break-word; font-size: 0.85rem;
+            max-height: 400px; overflow-y: auto; margin: 0; background: transparent;
+            padding: 0; border-radius: 0;
+        }
+        #teams-text-panel .close-btn {
+            position: absolute; top: 0.5rem; right: 0.75rem; background: none;
+            border: none; color: var(--text-muted); cursor: pointer; font-size: 1.2rem;
+        }
+        footer { text-align: center; padding: 2rem 0; margin-top: 2rem; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a class="back" href="../index.html">&larr; All Reports</a>
+        <div class="toolbar">
+            <button onclick="copyForTeams()" id="copy-btn">&#128203; Copy for Teams</button>
+            <button onclick="toggleTeamsPreview()" id="preview-btn">&#128065; Preview Teams text</button>
+        </div>
+        <div id="teams-text-panel">
+            <button class="close-btn" onclick="toggleTeamsPreview()">&times;</button>
+            <pre id="teams-text-content"></pre>
+        </div>
+        <h1>GitHub Activity Report: 2026-04-27 → 2026-05-04</h1>
+<blockquote><strong>Generated</strong>: 2026-05-04</blockquote>
+<blockquote><strong>Period</strong>: 7 days</blockquote>
+<h2>Activity Summary</h2>
+<table>
+<thead><tr><th>Metric</th><th>Count</th></tr></thead>
+<tbody>
+<tr><td>Projects active</td><td>1</td></tr>
+<tr><td>PRs created</td><td>1</td></tr>
+<tr><td>PRs merged</td><td>1</td></tr>
+<tr><td>PRs open</td><td>0</td></tr>
+<tr><td>Issues opened</td><td>0</td></tr>
+</tbody></table>
+<h2>Highlights</h2>
+<h3>🚀 New Features</h3>
+<ul>
+<li><strong>adaptctl</strong>: feat: add 'close incident' to resolve Defender XDR incidents (<a href="https://github.com/cloud-ecosystem-security/adaptctl/pull/86">#86</a>)</li>
+</ul>
+<h2>Activity Timeline</h2>
+<div class="mermaid">
+gantt
+title PR Activity (2026-04-27 → 2026-05-04)
+dateFormat YYYY-MM-DD
+section adaptctl
+#86 feat: add &#x27;close incident&#x27; to resolve De :done, 2026-04-24, 2026-04-29
+</div>
+<h2>Pull Requests</h2>
+<h3>cloud-ecosystem-security/adaptctl</h3>
+<table>
+<thead><tr><th>#</th><th>Title</th><th>Status</th><th>Created</th></tr></thead>
+<tbody>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/adaptctl/pull/86">#86</a></td><td>feat: add 'close incident' to resolve Defender XDR incidents</td><td>✅ Merged</td><td>2026-04-24</td></tr>
+</tbody></table>
+<h2>Active Repositories</h2>
+<table>
+<thead><tr><th>Repository</th><th>Description</th><th>Last Push</th></tr></thead>
+<tbody>
+<tr><td><a href="https://github.com/cloud-ecosystem-security/adaptctl">cloud-ecosystem-security/adaptctl</a></td><td>Utility for managing simulation environments</td><td>2026-04-29</td></tr>
+</tbody></table>
+        <footer>Generated by gh-work-report</footer>
+    </div>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+    </script>
+    <script>
+        function buildTeamsText() {
+            const doc = document;
+            let text = '';
+            const h1 = doc.querySelector('h1');
+
+            // One-line header: "📊 Apr 6–13 | 11 PRs merged, 3 projects"
+            const summaryH2 = Array.from(doc.querySelectorAll('h2')).find(h => h.textContent.includes('Activity Summary'));
+            let merged = 0, projects = 0;
+            if (summaryH2) {
+                const table = summaryH2.nextElementSibling;
+                if (table && table.tagName === 'TABLE') {
+                    for (const row of table.querySelectorAll('tbody tr, tr:not(:first-child)')) {
+                        const cells = row.querySelectorAll('td');
+                        if (cells.length >= 2) {
+                            const label = cells[0].textContent.trim().toLowerCase();
+                            const val = cells[1].textContent.trim();
+                            if (label.includes('merged')) merged = val;
+                            if (label.includes('active')) projects = val;
+                        }
+                    }
+                }
+            }
+            // Extract date range from h1 (e.g. "GitHub Activity Report: 2026-04-06 → 2026-04-13")
+            if (h1) {
+                const m = h1.textContent.match(/(\d{4}-\d{2}-\d{2}).*(\d{4}-\d{2}-\d{2})/);
+                if (m) {
+                    text += '\ud83d\udcca ' + m[1] + ' \u2192 ' + m[2];
+                } else {
+                    text += '\ud83d\udcca ' + h1.textContent;
+                }
+            }
+            if (merged || projects) text += ' | ' + merged + ' PRs merged, ' + projects + ' projects';
+            text += '\n\n';
+
+            // Highlights grouped by theme — skip Issues subsection
+            const headings = doc.querySelectorAll('h2, h3');
+            let inHighlights = false;
+            for (const h of headings) {
+                if (h.tagName === 'H2' && h.textContent.includes('Highlights')) {
+                    inHighlights = true;
+                    continue;
+                }
+                if (h.tagName === 'H2' && inHighlights) { inHighlights = false; }
+                if (inHighlights && h.tagName === 'H3') {
+                    // Skip Issues subsection
+                    if (h.textContent.includes('Issues Opened')) continue;
+                    text += h.textContent.trim() + '\n';
+                    let el = h.nextElementSibling;
+                    while (el && el.tagName === 'UL') {
+                        // Group list items by repo for compactness
+                        const byRepo = {};
+                        for (const li of el.querySelectorAll('li')) {
+                            const strong = li.querySelector('strong');
+                            const link = li.querySelector('a');
+                            const repo = strong ? strong.textContent.trim() : 'Other';
+                            // Extract PR description: text between "repo: " and " (#N)"
+                            let desc = li.textContent.trim();
+                            if (strong) desc = desc.substring(desc.indexOf(strong.textContent) + strong.textContent.length);
+                            desc = desc.replace(/^:\s*/, '').trim();
+                            // Remove the "(#N)" suffix since we'll add our own
+                            const num = link ? link.textContent.trim() : '';
+                            const url = link ? link.href : '';
+                            if (num) desc = desc.replace('(' + num + ')', '').trim();
+                            const entry = desc + (url ? ' (' + url + ')' : '');
+                            if (!byRepo[repo]) byRepo[repo] = [];
+                            byRepo[repo].push(entry);
+                        }
+                        for (const [repo, entries] of Object.entries(byRepo).sort((a,b) => a[0].localeCompare(b[0]))) {
+                            text += '  ' + repo + ': ' + entries.join('; ') + '\n';
+                        }
+                        el = el.nextElementSibling;
+                    }
+                    text += '\n';
+                }
+            }
+            return text.trim();
+        }
+
+        function copyForTeams() {
+            const text = buildTeamsText();
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.getElementById('copy-btn');
+                btn.textContent = '\u2705 Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = '\ud83d\udccb Copy for Teams';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        function toggleTeamsPreview() {
+            const panel = document.getElementById('teams-text-panel');
+            if (panel.style.display === 'none' || !panel.style.display) {
+                document.getElementById('teams-text-content').textContent = buildTeamsText();
+                panel.style.display = 'block';
+            } else {
+                panel.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
